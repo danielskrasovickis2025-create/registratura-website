@@ -327,7 +327,7 @@
     <a href="#faq">BUJ</a>
     <a href="#contact">Kontakti</a>
   </div>
-  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Sākt bezmaksas izmēģinājumu</button>
+  <button class="nav-cta" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">Skatīt cenas</button>
 </nav>
 
 <!-- HERO -->
@@ -339,7 +339,7 @@
     <h1>Jūsu uzņēmums nekad<br>vairs nepalaiž garām<br><em>nevienu zvanu.</em></h1>
     <p class="hero-sub">AI balss reģistratūra, kas atbild, maršrutē un risina klientu jautājumus — 24/7, latviešu valodā, bez cilvēka iesaistes.</p>
     <div class="hero-ctas">
-      <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Izmēģināt bez maksas →</button>
+      <button class="btn-primary" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">Skatīt cenas →</button>
       <button class="btn-secondary" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">Kā tas darbojas</button>
     </div>
     <div class="hero-social-proof">
@@ -551,7 +551,7 @@
         <li><span class="ck no">✗</span><span style="opacity:0.45">Pielāgots scenārijs</span></li>
         <li><span class="ck no">✗</span><span style="opacity:0.45">CRM integrācija</span></li>
       </ul>
-      <button class="plan-btn outline" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Sākt izmēģinājumu</button>
+      <button class="plan-btn outline" onclick="startCheckout('starter')">Abonēt Starter →</button>
     </div>
     <!-- Premium -->
     <div class="plan featured">
@@ -569,7 +569,7 @@
         <li><span class="ck">✓</span>Pielāgots zvanu scenārijs</li>
         <li><span class="ck">✓</span>CRM integrācija + API</li>
       </ul>
-      <button class="plan-btn light" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Sākt izmēģinājumu</button>
+      <button class="plan-btn light" onclick="startCheckout('premium')">Abonēt Premium →</button>
     </div>
     <!-- Enterprise -->
     <div class="plan">
@@ -592,7 +592,7 @@
 
   <div class="guarantee-bar reveal">
     <span style="font-size:28px">🛡️</span>
-    <p><strong>30 dienu naudas atdošanas garantija.</strong> Ja pirmajā mēnesī neesat apmierināts, atmaksājam visu bez jautājumiem. Bez riska, bez saistībām.</p>
+    <p><strong>Droša maksājumu apstrāde.</strong> Visi maksājumi tiek apstrādāti caur Stripe — pasaulē vadošo maksājumu platformu. Jūsu dati ir pilnīgi droši.</p>
   </div>
 </section>
 
@@ -609,7 +609,7 @@
       <div class="faq-item"><button class="faq-q" onclick="toggleFaq(2)">Kas notiek, ja AI nevar atbildēt uz jautājumu?<span class="faq-icon" id="fi2">+</span></button><div class="faq-a" id="fa2">AI automātiski nodod zvanu cilvēkam, ja tas nevar atrisināt jautājumu. Jūs varat iestatīt nodošanas noteikumus — pēc tēmas, laika vai prioritātes.</div></div>
       <div class="faq-item"><button class="faq-q" onclick="toggleFaq(3)">Vai varu izmantot savu esošo tālruņa numuru?<span class="faq-icon" id="fi3">+</span></button><div class="faq-a" id="fa3">Jā. Mēs varam savienot Reģistratūra.AI ar jūsu esošo uzņēmuma numuru, izmantojot call forwarding vai SIP integrāciju. Klientiem nekas nemainās.</div></div>
       <div class="faq-item"><button class="faq-q" onclick="toggleFaq(4)">Vai tas atbilst GDPR prasībām?<span class="faq-icon" id="fi4">+</span></button><div class="faq-a" id="fa4">Pilnīgi. Visi dati tiek apstrādāti un glabāti ES serverī. Piedāvājam datu apstrādes līgumu (DPA), un Enterprise klientiem nodrošinām datu rezidenci Latvijā.</div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(5)">Vai varu atcelt jebkurā laikā?<span class="faq-icon" id="fi5">+</span></button><div class="faq-a" id="fa5">Jā. Nav ilgtermiņa saistību. Atceļot abonementu, pakalpojums turpinās līdz norēķinu perioda beigām. Pirmajā mēnesī darbojas arī pilna naudas atdošanas garantija.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(5)">Vai varu atcelt jebkurā laikā?<span class="faq-icon" id="fi5">+</span></button><div class="faq-a" id="fa5">Jā. Nav ilgtermiņa saistību. Atceļot abonementu, pakalpojums turpinās līdz norēķinu perioda beigām.</div></div>
     </div>
   </div>
 </section>
@@ -619,7 +619,7 @@
   <div class="contact-inner reveal">
     <div class="contact-header">
       <div class="section-label">Sazināties</div>
-      <h2 class="section-title">Sāciet <em>bez maksas</em></h2>
+      <h2 class="section-title">Sāciet <em>šodien</em></h2>
       <p class="section-sub" style="text-align:center;margin:0 auto">Aizpildiet veidlapu un mēs sazināsimies 24 stundu laikā, lai palīdzētu jums sākt.</p>
     </div>
     <form id="contact-form" onsubmit="submitForm(event)">
@@ -658,7 +658,7 @@
   <h2>Gatavs pārveidot<br>sava uzņēmuma <em>reģistratūru?</em></h2>
   <p>Pievienojieties uzņēmumiem, kas jau izmanto AI, lai apkalpotu savus klientus labāk.</p>
   <div class="cta-bottom-btns">
-    <button class="btn-white" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Sākt bezmaksas izmēģinājumu</button>
+    <button class="btn-white" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">Skatīt cenas →</button>
     <button class="btn-ghost" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">Skatīt cenas</button>
   </div>
 </div>
@@ -695,12 +695,12 @@
     </div>
     <div class="footer-bottom">
       <span>© 2025 Reģistratūra.AI. Visas tiesības aizsargātas.</span>
-      <span>Rīga, Latvija · info@registratura.ai · +371 2X XXX XXX</span>
+      <span>Rīga, Latvija · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a7cec9c1c8e7d5c2c0ced4d3d5c6d3d2d5c689c6ce">[email&#160;protected]</a> · +371 2X XXX XXX</span>
     </div>
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // Navbar scroll
 window.addEventListener('scroll', () => {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
@@ -742,10 +742,35 @@ function submitForm(e) {
 }
 
 // Scroll reveal
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(el => { if(el.isIntersecting) { el.target.classList.add('visible'); } });
-}, { threshold: 0.12 });
+const observer = new IntersectionObserver((
+});
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+<!-- STRIPE CHECKOUT -->
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+const STRIPE_PUBLISHABLE_KEY = 'pk_test_51TBKrYJ5wzS9f2oVOETeL5Uw7onV706TFzV8Tyg5wx4ta73ZBi8M19sKGYEmILlXXdJenu3XvRU41uTgkK25lWMi00RVI760Eb';
+const STARTER_PRICE_ID = 'price_1TBL7RJ5wzS9f2oVe9SYFncn';
+const PREMIUM_PRICE_ID = 'price_1TBL8HJ5wzS9f2oVMpy9zMzF';
+const BACKEND_URL = 'https://aria-server-production.up.railway.app';
+
+async function startCheckout(plan) {
+  try {
+    const priceId = plan === 'starter' ? STARTER_PRICE_ID : PREMIUM_PRICE_ID;
+    const stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
+    const res = await fetch(BACKEND_URL + '/create-checkout-session', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ priceId })
+    });
+    const { sessionId } = await res.json();
+    await stripe.redirectToCheckout({ sessionId });
+  } catch(e) {
+    alert('Kļūda savienojumā. Lūdzu aizpildiet kontaktu formu zemāk un mēs sazināsimies!');
+    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+  }
+}
 </script>
 </body>
 </html>
