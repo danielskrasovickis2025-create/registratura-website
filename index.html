@@ -624,26 +624,26 @@
     </div>
     <form id="contact-form" onsubmit="submitForm(event)" action="https://formspree.io/f/xeerlbwr" method="POST">
       <div class="form-grid">
-        <div class="form-group"><label>Vārds, Uzvārds *</label><input type="text" placeholder="Jānis Bērziņš" required /></div>
-        <div class="form-group"><label>Uzņēmums *</label><input type="text" placeholder="SIA Jūsu Uzņēmums" required /></div>
-        <div class="form-group"><label>E-pasts *</label><input type="email" placeholder="janis@uznemums.lv" required /></div>
-        <div class="form-group"><label>Tālrunis</label><input type="tel" placeholder="+371 2X XXX XXX" /></div>
+        <div class="form-group"><label>Vārds, Uzvārds *</label><input type="text" name="vards" placeholder="Jānis Bērziņš" required /></div>
+        <div class="form-group"><label>Uzņēmums *</label><input type="text" name="uznemums" placeholder="SIA Jūsu Uzņēmums" required /></div>
+        <div class="form-group"><label>E-pasts *</label><input type="email" name="email" placeholder="janis@uznemums.lv" required /></div>
+        <div class="form-group"><label>Tālrunis</label><input type="tel" name="talrunis" placeholder="+371 2X XXX XXX" /></div>
         <div class="form-group"><label>Interesējošais plāns</label>
-          <select>
+          <select name="plans">
             <option>Starter — €997/mēn.</option>
             <option selected>Premium — €1 700/mēn.</option>
             <option>Enterprise — pēc pieprasījuma</option>
           </select>
         </div>
         <div class="form-group"><label>Zvanu skaits mēnesī</label>
-          <select>
+          <select name="zvani">
             <option>Mazāk par 100</option>
             <option>100–500</option>
             <option>500–2000</option>
             <option>Vairāk par 2000</option>
           </select>
         </div>
-        <div class="form-group full"><label>Papildus informācija</label><textarea placeholder="Pastāstiet par savu uzņēmumu un specifiskajām vajadzībām..."></textarea></div>
+        <div class="form-group full"><label>Papildus informācija</label><textarea name="zinojums" placeholder="Pastāstiet par savu uzņēmumu un specifiskajām vajadzībām..."></textarea></div>
         <div class="form-group full"><button type="submit" class="form-submit">Nosūtīt pieteikumu →</button></div>
       </div>
     </form>
@@ -771,6 +771,12 @@ const PREMIUM_PRICE_ID = 'price_1TBL8HJ5wzS9f2oVMpy9zMzF';
 const BACKEND_URL = 'https://aria-server-production.up.railway.app';
 
 async function startCheckout(plan) {
+  const btn = event.target;
+  const originalText = btn.textContent;
+  btn.textContent = 'Apstrādā...';
+  btn.style.opacity = '0.7';
+  btn.disabled = true;
+
   try {
     const priceId = plan === 'starter' ? STARTER_PRICE_ID : PREMIUM_PRICE_ID;
     const stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
@@ -779,13 +785,30 @@ async function startCheckout(plan) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ priceId })
     });
-    const { sessionId } = await res.json();
-    await stripe.redirectToCheckout({ sessionId });
+    if (!res.ok) throw new Error('Server error: ' + res.status);
+    const data = await res.json();
+    if (data.error) throw new Error(data.error);
+    await stripe.redirectToCheckout({ sessionId: data.sessionId });
   } catch(e) {
-    alert('Kļūda savienojumā. Lūdzu aizpildiet kontaktu formu zemāk un mēs sazināsimies!');
+    console.error('Checkout error:', e);
+    btn.textContent = originalText;
+    btn.style.opacity = '1';
+    btn.disabled = false;
     document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
   }
 }
+
+// Show success message if redirected back after payment
+window.addEventListener('load', () => {
+  if (window.location.search.includes('payment=success')) {
+    document.body.insertAdjacentHTML('afterbegin', `
+      <div style="position:fixed;top:0;left:0;right:0;z-index:9999;background:#0F6E56;color:white;text-align:center;padding:16px;font-size:15px;font-weight:500;">
+        ✅ Maksājums veiksmīgs! Mēs sazināsimies 24 stundu laikā. 
+        <button onclick="this.parentElement.remove()" style="background:none;border:none;color:white;cursor:pointer;margin-left:16px;font-size:18px;">✕</button>
+      </div>`);
+    window.history.replaceState({}, '', window.location.pathname);
+  }
+});
 </script>
 </body>
 </html>
