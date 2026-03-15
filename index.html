@@ -622,7 +622,7 @@
       <h2 class="section-title">Sāciet <em>šodien</em></h2>
       <p class="section-sub" style="text-align:center;margin:0 auto">Aizpildiet veidlapu un mēs sazināsimies 24 stundu laikā, lai palīdzētu jums sākt.</p>
     </div>
-    <form id="contact-form" onsubmit="submitForm(event)">
+    <form id="contact-form" onsubmit="submitForm(event)" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
       <div class="form-grid">
         <div class="form-group"><label>Vārds, Uzvārds *</label><input type="text" placeholder="Jānis Bērziņš" required /></div>
         <div class="form-group"><label>Uzņēmums *</label><input type="text" placeholder="SIA Jūsu Uzņēmums" required /></div>
@@ -737,8 +737,22 @@ function toggleFaq(i) {
 // Form submit
 function submitForm(e) {
   e.preventDefault();
-  document.getElementById('contact-form').style.display = 'none';
-  document.getElementById('success-msg').style.display = 'block';
+  const form = document.getElementById('contact-form');
+  const data = new FormData(form);
+  fetch(form.action, {
+    method: 'POST',
+    body: data,
+    headers: { 'Accept': 'application/json' }
+  }).then(res => {
+    if(res.ok) {
+      form.style.display = 'none';
+      document.getElementById('success-msg').style.display = 'block';
+    } else {
+      alert('Kļūda nosūtot veidlapu. Lūdzu mēģiniet vēlreiz.');
+    }
+  }).catch(() => {
+    alert('Kļūda nosūtot veidlapu. Lūdzu mēģiniet vēlreiz.');
+  });
 }
 
 // Scroll reveal
