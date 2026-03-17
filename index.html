@@ -643,10 +643,6 @@ window.addEventListener('load',()=>{
 <script src="https://js.stripe.com/v3/"></script>
 <script>
 const STRIPE_PUBLISHABLE_KEY='pk_test_51TBKrYJ5wzS9f2oVOETeL5Uw7onV706TFzV8Tyg5wx4ta73ZBi8M19sKGYEmILlXXdJenu3XvRU41uTgkK25lWMi00RVI760Eb';
-const PRICES={
-  starter:['price_1TC4z2J5wzS9f2oV87dN9onG','price_1TC51WJ5wzS9f2oVCxzWY71E'],
-  growth:['price_1TC53jJ5wzS9f2oVWctWozXQ','price_1TC54OJ5wzS9f2oVpQgVftmr']
-};
 const BACKEND_URL='https://aria-server-production.up.railway.app';
 
 async function startCheckout(plan){
@@ -657,9 +653,12 @@ async function startCheckout(plan){
   btn.disabled=true;
   try{
     const stripe=Stripe(STRIPE_PUBLISHABLE_KEY);
-    const priceIds=PRICES[plan];
-    const res=await fetch(BACKEND_URL+'/create-checkout-session',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({priceIds})});
-    if(!res.ok)throw new Error('Server error');
+    const res=await fetch(BACKEND_URL+'/create-checkout-session',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({plan})
+    });
+    if(!res.ok)throw new Error('Server error '+res.status);
     const data=await res.json();
     if(data.error)throw new Error(data.error);
     await stripe.redirectToCheckout({sessionId:data.sessionId});
