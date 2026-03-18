@@ -665,402 +665,139 @@ footer{background:var(--ink);padding:40px 24px 24px;border-top:1px solid rgba(25
 // ═══════════════════════════════════════
 // TRANSLATIONS
 // ═══════════════════════════════════════
-const TRANSLATIONS = {
-  lv: {
+const T = {
+  lv:{
     'nav.how':'Kā tas darbojas','nav.features':'Iespējas','nav.pricing':'Cenas','nav.faq':'BUJ','nav.contact':'Kontakti','nav.cta':'Skatīt cenas',
-    'hero.badge':'🇱🇻 Baltijas reģionam','hero.h1':'Jūsu uzņēmums nekad<br>nepalaiž garām<br><em>nevienu zvanu.</em>',
-    'hero.sub':'AI balss reģistratūra, kas atbild 24/7, runā jūsu valodā, savāc leads un rezervē tikšanās — bez cilvēka iesaistes. Izmantojiet savu esošo numuru.',
+    'hero.h1':'Jūsu uzņēmums nekad nepalaiž garām<br><em>nevienu zvanu.</em>',
+    'hero.sub':'AI balss reģistratūra, kas atbild 24/7, runā jūsu valodā, savāc leads un rezervē tikšanās. Izmantojiet savu esošo numuru.',
     'hero.cta1':'Skatīt cenas →','hero.cta2':'Kā tas darbojas',
     'proof.availability':'Pieejamība','proof.response':'Atbildes laiks','proof.languages':'Valodas','proof.gdpr':'Atbilstība',
-    'logos.trusted':'Uzticas:','how.label':'Kā tas darbojas','how.title':'Vienkārši iestatāms.<br><em>Uzreiz strādā.</em>',
-    'how.sub':'Iestatīšana aizņem mazāk nekā 24 stundas. Jūsu esošais numurs paliek nemainīts.',
-    'how.s1t':'Pievienojiet savu esošo numuru','how.s1d':'Nav jāmaina numurs. Vienkārša pāradresācija — klientiem nekas nemainās.',
-    'how.s2t':'Mēs konfigurējam Aria jūsu biznesam','how.s2d':'Iestatām scenāriju, valodu, Google Calendar un zvanu maršrutēšanu.',
-    'how.s3t':'Aria sāk atbildēt uz zvaniem','how.s3d':'Katrs zvans apstrādāts jūsu valodā un rezervācija nonāk kalendārā automātiski.',
-    'how.s4t':'Leads un analītika reāllaikā','how.s4d':'Katrs zvanītājs saglabāts — vārds, numurs, vajadzība. Nulles zudums.',
-    'mockup.incoming':'Ienākošais zvans','mockup.number':'Jūsu esošais numurs','mockup.status':'Statuss','mockup.active':'Aktīvs','mockup.lang':'Valoda',
-    'feat.label':'Iespējas','feat.title':'Viss, kas nepieciešams<br><em>profesionālai reģistratūrai</em>',
-    'feat.1t':'Dabiska balss jūsu valodā','feat.1d':'Aria runā latviski, lietuviski vai igauniski ar dabiskām intonācijām. Klienti bieži neatzīst, ka runā ar AI.',
-    'feat.2t':'Jūsu esošais numurs','feat.2d':'Nav jāmaina tālruņa numurs. Vienkārša pāradresācija — viss darbojas caur jūsu pašreizējo numuru.',
-    'feat.3t':'Automātiska rezervācija','feat.3d':'Aria rezervē tikšanās tieši jūsu Google Calendar. Klienti saņem apstiprinājumu uzreiz.',
-    'feat.4t':'Lead uztveršana','feat.4d':'Katrs zvanītājs — vārds, tālrunis, vajadzība — saglabāts automātiski. Nulles zudums.',
-    'feat.5t':'5+ valodas','feat.5d':'Latviešu, lietuviešu, igauņu, angļu un krievu valodā. Aria automātiski pārslēdzas pēc klienta valodas.',
-    'feat.6t':'GDPR atbilstība','feat.6d':'Visi dati glabājas ES serverī. Pilnīga atbilstība Latvijas, Lietuvas, Igaunijas un Eiropas likumiem.',
-    'countries.title':'Pieejams visā Baltijā','countries.sub':'Viens pakalpojums — trīs valstis — jūsu klientu valodā',
-    'testi.label':'Atsauksmes','testi.title':'Ko saka mūsu <em>klienti</em>',
-    'stats.1':'Zvanu atbildes rādītājs','stats.2':'Atbildes laiks','stats.3':'Baltijas valstis','stats.4':'Nepārtraukta darbība',
-    'pricing.label':'Cenas','pricing.title':'Izvēlieties savam<br><em>uzņēmumam piemērotāko</em>','pricing.sub':'Bez slēptām maksām. Jūsu numurs paliek. Atceliet jebkurā laikā.',
-    'plan.monthly':'/mēnesī','plan.s.tagline':'"Nekad vairs nepalaid garām zvanu"','plan.s.setup':'Iestatīšana: <strong>€797</strong> (vienreiz)',
-    'plan.s.desc':'Ideāli maziem uzņēmumiem — zobārstniecībām, advokātiem, auto servisiem.','plan.s.f1':'Aria atbild uz jūsu esošo numuru 24/7',
-    'plan.s.f2':'Latviešu + angļu + krievu valoda','plan.s.f3':'Lead uztveršana automātiski','plan.s.f4':'Google Calendar integrācija',
-    'plan.s.f5':'E-pasta paziņojumi katram leadam','plan.s.f6':'500 minūtes iekļautas','plan.s.f7':'Iestatīšana 24 stundu laikā',
-    'plan.s.f8':'Pielāgots scenārijs','plan.s.f9':'CRM integrācija','plan.s.btn':'Sākt ar Starter →',
-    'plan.g.tagline':'"Jūsu pilna laika AI reģistratūra"','plan.g.setup':'Iestatīšana: <strong>€1,500</strong> (vienreiz)',
-    'plan.g.desc':'Augošiem uzņēmumiem ar CRM, analītiku un pielāgotu scenāriju.','plan.g.f1':'Viss no Starter',
-    'plan.g.f2':'5+ valodas (LV, LT, ET, EN, RU, DE)','plan.g.f3':'Pielāgots zvanu scenārijs','plan.g.f4':'CRM integrācija (HubSpot / Pipedrive)',
-    'plan.g.f5':'SMS paziņojumi par katru leadu','plan.g.f6':'Reāllaika leads analītika','plan.g.f7':'1,500 minūtes iekļautas',
-    'plan.g.f8':'Zvanu ieraksti un transkripcijas','plan.g.f9':'Prioritārs atbalsts 24/7','plan.g.btn':'Sākt ar Growth →',
-    'plan.e.tagline':'"Pilnīga digitālā klātbūtne"','plan.e.setup':'Iestatīšana: <strong style="color:var(--gold)">€3,997</strong> (vienreiz)',
-    'plan.e.period':'/mēnesī pēc tam','plan.e.desc':'Mēs izveidojam jūsu uzņēmuma mājaslapu ar Aria jau iekļautu.',
-    'plan.e.f1':'Viss no Growth','plan.e.f2':'Pielāgota mājaslapa jūsu biznesam','plan.e.f3':'Aria numurs iebūvēts mājaslapā',
-    'plan.e.f4':'Klientu portāls ar leads un analītiku','plan.e.f5':'Domēna vārds + hosting iekļauts','plan.e.f6':'Neierobežotas minūtes',
-    'plan.e.f7':'Dediķēts konta menedžeris','plan.e.f8':'Mājaslapa gatava 48 stundu laikā','plan.e.f9':'Bezmaksas izmaiņas pirmajā mēnesī',
-    'plan.e.btn':'Pieteikties Elite →','plan.e.note':'€3,997 iestatīšana · tad €797/mēn.',
-    'secure.title':'Droša maksājumu apstrāde ar Stripe.','secure.desc':'Starter un Growth — tūlītēja aktivācija. Elite — mēs sazināsimies 24h laikā.',
-    'faq.label':'Jautājumi','faq.title':'Biežāk uzdotie <em>jautājumi</em>',
-    'faq.1q':'Vai man jāmaina savs tālruņa numurs?','faq.1a':'Nē. Jūsu esošais numurs paliek nemainīts. Mēs iestatām zvanu pāradresāciju uz Aria. Klientiem nekas nemainās.',
-    'faq.2q':'Cik ilgs laiks nepieciešams iestatīšanai?','faq.2a':'Starter un Growth — 24 stundu laikā. Elite Package ar mājaslapu — 48 stundu laikā.',
-    'faq.3q':'Vai Aria tiešām runā latviski, lietuviski un igauniski?','faq.3a':'Jā — Aria izmanto ElevenLabs jaunāko balss tehnoloģiju ar apmācītiem modeļiem visām trim Baltijas valodām.',
-    'faq.4q':'Ko nozīmē iestatīšanas maksa?','faq.4a':'Iestatīšanas maksa sedz sākotnējo darbu — Aria konfigurāciju, zvanu scenārija izstrādi, Calendar integrāciju un testēšanu.',
-    'faq.5q':'Vai tas atbilst GDPR prasībām?','faq.5a':'Pilnīgi. Visi dati glabājas ES serverī. Atbilst Latvijas, Lietuvas un Igaunijas datu aizsardzības prasībām.',
-    'faq.6q':'Vai varu atcelt jebkurā laikā?','faq.6a':'Jā. Nav ilgtermiņa saistību. Atceļot, pakalpojums turpinās līdz norēķinu perioda beigām.',
-    'contact.label':'Sazināties','contact.title':'Sāciet <em>šodien</em>','contact.sub':'Aizpildiet veidlapu un mēs sazināsimies 24 stundu laikā.',
-    'form.name':'Vārds, Uzvārds *','form.company':'Uzņēmums *','form.email':'E-pasts *','form.phone':'Tālrunis',
-    'form.country':'Valsts','form.plan':'Plāns','form.existing':'Jūsu esošais tālruņa numurs','form.message':'Papildus informācija',
-    'form.submit':'Nosūtīt pieteikumu →','form.success':'✓ Paldies! Mēs sazināsimies ar jums 24 stundu laikā.','form.note':'Jūsu dati ir drošībā. Mēs nenosūtām surogātpastu.',
-    'form.unsure':'Nav pārliecināts',
-    'cta.title':'Gatavs pārveidot<br>sava uzņēmuma <em>reģistratūru?</em>','cta.sub':'Pievienojieties Baltijas uzņēmumiem, kas jau izmanto AI. Jūsu numurs paliek.',
-    'cta.btn1':'Skatīt cenas →','cta.btn2':'Sazināties',
-    'footer.tagline':'AI balss reģistratūra Baltijas uzņēmumiem. Latvija · Lietuva · Igaunija.',
-    'footer.product':'Produkts','footer.company':'Uzņēmums','footer.legal':'Juridisks','footer.about':'Par mums','footer.blog':'Blogs',
-    'footer.privacy':'Privātuma politika','footer.terms':'Lietošanas noteikumi'
+    'how.s1t':'Pievienojiet savu esošo numuru','how.s1d':'Nav jāmaina numurs. Klientiem nekas nemainās.',
+    'how.s2t':'Mēs konfigurējam Aria','how.s2d':'Iestatām scenāriju, valodu un Google Calendar.',
+    'how.s3t':'Aria sāk atbildēt','how.s3d':'Katrs zvans apstrādāts jūsu valodā automātiski.',
+    'how.s4t':'Leads reāllaikā','how.s4d':'Katrs zvanītājs saglabāts. Nulles zudums.',
+    'plan.s.btn':'Sākt ar Starter →','plan.g.btn':'Sākt ar Growth →','plan.e.btn':'Pieteikties Elite →',
+    'form.submit':'Nosūtīt pieteikumu →','form.success':'✓ Paldies! Mēs sazināsimies 24 stundu laikā.',
+    'cta.btn1':'Skatīt cenas →','cta.btn2':'Sazināties'
   },
-  lt: {
+  lt:{
     'nav.how':'Kaip tai veikia','nav.features':'Galimybės','nav.pricing':'Kainos','nav.faq':'DUK','nav.contact':'Kontaktai','nav.cta':'Žiūrėti kainas',
-    'hero.badge':'🇱🇹 Baltijos regionui','hero.h1':'Jūsų įmonė niekada<br>nepraleis<br><em>nė vieno skambučio.</em>',
-    'hero.sub':'AI balso registratūra, atsakanti 24/7, kalbanti jūsų kalba, renkanti potencialius klientus ir rezervuojanti susitikimus — automatiškai. Naudokite savo esamą numerį.',
+    'hero.h1':'Jūsų įmonė niekada nepraleis<br><em>nė vieno skambučio.</em>',
+    'hero.sub':'AI balso registratūra, atsakanti 24/7, kalbanti jūsų kalba, renkanti potencialius klientus ir rezervuojanti susitikimus. Naudokite savo esamą numerį.',
     'hero.cta1':'Žiūrėti kainas →','hero.cta2':'Kaip tai veikia',
     'proof.availability':'Prieinamumas','proof.response':'Atsako laikas','proof.languages':'Kalbos','proof.gdpr':'Atitiktis',
-    'logos.trusted':'Pasitiki:','how.label':'Kaip tai veikia','how.title':'Paprasta nustatyti.<br><em>Veikia iš karto.</em>',
-    'how.sub':'Diegimas užtrunka mažiau nei 24 valandas. Jūsų esamas numeris išlieka nepakitęs.',
-    'how.s1t':'Prijunkite savo esamą numerį','how.s1d':'Nereikia keisti numerio. Paprastas persiuntimas — klientams nieko nesikeičia.',
-    'how.s2t':'Mes sukonfigūruojame Aria jūsų verslui','how.s2d':'Nustatome scenarijų, kalbą, Google Calendar ir skambučių maršrutizavimą.',
-    'how.s3t':'Aria pradeda atsakyti į skambučius','how.s3d':'Kiekvienas skambutis apdorojamas jūsų kalba ir rezervacija patenka į kalendorių.',
-    'how.s4t':'Potencialūs klientai ir analizė realiuoju laiku','how.s4d':'Kiekvienas skambinantis išsaugomas — vardas, numeris, poreikis. Nulis praradimų.',
-    'mockup.incoming':'Įeinantis skambutis','mockup.number':'Jūsų esamas numeris','mockup.status':'Būsena','mockup.active':'Aktyvus','mockup.lang':'Kalba',
-    'feat.label':'Galimybės','feat.title':'Viskas, ko reikia<br><em>profesionaliai registratūrai</em>',
-    'feat.1t':'Natūralus balsas jūsų kalba','feat.1d':'Aria kalba lietuviškai, latviškai ar estiškai su natūralia intonacija. Klientai dažnai nesupranta, kad kalba su AI.',
-    'feat.2t':'Jūsų esamas numeris','feat.2d':'Nereikia keisti telefono numerio. Paprastas persiuntimas — viskas veikia per jūsų dabartinį numerį.',
-    'feat.3t':'Automatinis rezervavimas','feat.3d':'Aria rezervuoja susitikimus tiesiogiai jūsų Google Calendar. Klientai iš karto gauna patvirtinimą.',
-    'feat.4t':'Potencialių klientų surinkimas','feat.4d':'Kiekvienas skambinantis — vardas, telefonas, poreikis — išsaugomas automatiškai.',
-    'feat.5t':'5+ kalbos','feat.5d':'Lietuvių, latvių, estų, anglų ir rusų kalba. Aria automatiškai persijungia pagal kliento kalbą.',
-    'feat.6t':'GDPR atitiktis','feat.6d':'Visi duomenys saugomi ES serveriuose. Pilna atitiktis Lietuvos ir Europos teisės aktams.',
-    'countries.title':'Prieinamas visoje Baltijoje','countries.sub':'Viena paslauga — trys šalys — jūsų klientų kalba',
-    'testi.label':'Atsiliepimai','testi.title':'Ką sako mūsų <em>klientai</em>',
-    'stats.1':'Skambučių atsakymo rodiklis','stats.2':'Atsako laikas','stats.3':'Baltijos šalys','stats.4':'Nepertraukiamas veikimas',
-    'pricing.label':'Kainos','pricing.title':'Pasirinkite tinkamiausią<br><em>savo verslui</em>','pricing.sub':'Be paslėptų mokesčių. Jūsų numeris išlieka. Atšaukite bet kada.',
-    'plan.monthly':'/mėnesį','plan.s.tagline':'"Niekada nepraraskite skambučio"','plan.s.setup':'Diegimas: <strong>€797</strong> (vieną kartą)',
-    'plan.s.desc':'Idealiai tinka mažoms įmonėms — stomatologijos, advokatūroms, automobilių servisams.',
-    'plan.s.f1':'Aria atsako į jūsų esamą numerį 24/7','plan.s.f2':'Lietuvių + anglų + rusų kalba','plan.s.f3':'Automatinis potencialių klientų surinkimas',
-    'plan.s.f4':'Google Calendar integracija','plan.s.f5':'El. pašto pranešimai apie kiekvieną potencialų klientą','plan.s.f6':'500 minučių įtraukta',
-    'plan.s.f7':'Diegimas per 24 valandas','plan.s.f8':'Pritaikytas scenarijus','plan.s.f9':'CRM integracija','plan.s.btn':'Pradėti su Starter →',
-    'plan.g.tagline':'"Jūsų visą darbo dienos AI registratūra"','plan.g.setup':'Diegimas: <strong>€1,500</strong> (vieną kartą)',
-    'plan.g.desc':'Augančioms įmonėms su CRM, analize ir pritaikytu scenarijumi.',
-    'plan.g.f1':'Viskas iš Starter','plan.g.f2':'5+ kalbos (LT, LV, ET, EN, RU, DE)','plan.g.f3':'Pritaikytas skambučių scenarijus',
-    'plan.g.f4':'CRM integracija (HubSpot / Pipedrive)','plan.g.f5':'SMS pranešimai apie kiekvieną potencialų klientą','plan.g.f6':'Realiojo laiko potencialių klientų analizė',
-    'plan.g.f7':'1,500 minučių įtraukta','plan.g.f8':'Skambučių įrašai ir transkripcijos','plan.g.f9':'Prioritetinė pagalba 24/7','plan.g.btn':'Pradėti su Growth →',
-    'plan.e.tagline':'"Visiškas skaitmeninis buvimas"','plan.e.setup':'Diegimas: <strong style="color:var(--gold)">€3,997</strong> (vieną kartą)',
-    'plan.e.period':'/mėnesį po to','plan.e.desc':'Mes sukuriame jūsų įmonės svetainę su Aria — visiškas skaitmeninis sprendimas nuo nulio.',
-    'plan.e.f1':'Viskas iš Growth','plan.e.f2':'Pritaikyta svetainė jūsų verslui','plan.e.f3':'Aria numeris įmontuotas svetainėje',
-    'plan.e.f4':'Klientų portalas su potencialiais klientais ir analize','plan.e.f5':'Domeno vardas + prieglobstis įtrauktas','plan.e.f6':'Neribota minučių',
-    'plan.e.f7':'Paskirtas paskyros vadovas','plan.e.f8':'Svetainė paruošta per 48 valandas','plan.e.f9':'Nemokami pakeitimai pirmą mėnesį',
-    'plan.e.btn':'Registruotis Elite →','plan.e.note':'€3,997 diegimas · tada €797/mėn.',
-    'secure.title':'Saugus mokėjimų apdorojimas su Stripe.','secure.desc':'Starter ir Growth — momentinis aktyvavimas. Elite — susisieksime per 24 val.',
-    'faq.label':'Klausimai','faq.title':'Dažniausiai užduodami <em>klausimai</em>',
-    'faq.1q':'Ar man reikia keisti telefono numerį?','faq.1a':'Ne. Jūsų esamas numeris išlieka nepakitęs. Mes nustatome skambučių persiuntimą į Aria. Klientams nieko nesikeičia.',
-    'faq.2q':'Kiek laiko užtrunka diegimas?','faq.2a':'Starter ir Growth — per 24 valandas. Elite paketas su svetaine — per 48 valandas.',
-    'faq.3q':'Ar Aria tikrai kalba lietuviškai, latviškai ir estiškai?','faq.3a':'Taip — Aria naudoja naujausią ElevenLabs balso technologiją su apmokyti modeliai visoms trims Baltijos kalboms.',
-    'faq.4q':'Ką reiškia diegimo mokestis?','faq.4a':'Diegimo mokestis padengia pradinį darbą — Aria konfigūraciją, skambučių scenarijaus kūrimą ir Calendar integraciją.',
-    'faq.5q':'Ar tai atitinka GDPR reikalavimus?','faq.5a':'Visiškai. Visi duomenys saugomi ES serveriuose. Atitinka Lietuvos ir Europos duomenų apsaugos reikalavimus.',
-    'faq.6q':'Ar galiu atšaukti bet kada?','faq.6a':'Taip. Nėra ilgalaikių įsipareigojimų. Atšaukus, paslauga tęsiasi iki atsiskaitymo laikotarpio pabaigos.',
-    'contact.label':'Susisiekite','contact.title':'Pradėkite <em>šiandien</em>','contact.sub':'Užpildykite formą ir mes susisieksime per 24 valandas.',
-    'form.name':'Vardas, Pavardė *','form.company':'Įmonė *','form.email':'El. paštas *','form.phone':'Telefonas',
-    'form.country':'Šalis','form.plan':'Planas','form.existing':'Jūsų esamas telefono numeris','form.message':'Papildoma informacija',
-    'form.submit':'Siųsti paraišką →','form.success':'✓ Ačiū! Susisieksime su jumis per 24 valandas.','form.note':'Jūsų duomenys yra saugūs. Nesiunčiame šlamšto.',
-    'form.unsure':'Nesate tikri',
-    'cta.title':'Pasiruošę transformuoti<br>savo įmonės <em>registratūrą?</em>','cta.sub':'Prisijunkite prie Baltijos įmonių, jau naudojančių AI. Jūsų numeris išlieka.',
-    'cta.btn1':'Žiūrėti kainas →','cta.btn2':'Susisiekti',
-    'footer.tagline':'AI balso registratūra Baltijos įmonėms. Latvija · Lietuva · Estija.',
-    'footer.product':'Produktas','footer.company':'Įmonė','footer.legal':'Teisinė','footer.about':'Apie mus','footer.blog':'Tinklaraštis',
-    'footer.privacy':'Privatumo politika','footer.terms':'Naudojimo sąlygos'
+    'how.s1t':'Prijunkite savo esamą numerį','how.s1d':'Nereikia keisti numerio. Klientams nieko nesikeičia.',
+    'how.s2t':'Mes sukonfigūruojame Aria','how.s2d':'Nustatome scenarijų, kalbą ir Google Calendar.',
+    'how.s3t':'Aria pradeda atsakyti','how.s3d':'Kiekvienas skambutis apdorojamas jūsų kalba.',
+    'how.s4t':'Potencialūs klientai realiuoju laiku','how.s4d':'Kiekvienas skambinantis išsaugomas. Nulis praradimų.',
+    'plan.s.btn':'Pradėti su Starter →','plan.g.btn':'Pradėti su Growth →','plan.e.btn':'Registruotis Elite →',
+    'form.submit':'Siųsti paraišką →','form.success':'✓ Ačiū! Susisieksime su jumis per 24 valandas.',
+    'cta.btn1':'Žiūrėti kainas →','cta.btn2':'Susisiekti'
   },
-  et: {
+  et:{
     'nav.how':'Kuidas see töötab','nav.features':'Võimalused','nav.pricing':'Hinnad','nav.faq':'KKK','nav.contact':'Kontakt','nav.cta':'Vaata hindu',
-    'hero.badge':'🇪🇪 Balti piirkonnale','hero.h1':'Teie ettevõte ei jäta<br>kunagi vahele<br><em>ühtegi kõnet.</em>',
-    'hero.sub':'AI häälregistratuur, mis vastab 24/7, räägib teie keeles, kogub müügivihjeid ja broneerib kohtumisi — automaatselt. Kasutage oma olemasolevat numbrit.',
+    'hero.h1':'Teie ettevõte ei jäta kunagi vahele<br><em>ühtegi kõnet.</em>',
+    'hero.sub':'AI häälregistratuur, mis vastab 24/7, räägib teie keeles, kogub müügivihjeid ja broneerib kohtumisi. Kasutage oma olemasolevat numbrit.',
     'hero.cta1':'Vaata hindu →','hero.cta2':'Kuidas see töötab',
     'proof.availability':'Kättesaadavus','proof.response':'Vastamisaeg','proof.languages':'Keeled','proof.gdpr':'Vastavus',
-    'logos.trusted':'Usaldavad:','how.label':'Kuidas see töötab','how.title':'Lihtne seadistada.<br><em>Töötab kohe.</em>',
-    'how.sub':'Seadistamine võtab vähem kui 24 tundi. Teie olemasolev number jääb muutumatuks.',
-    'how.s1t':'Ühendage oma olemasolev number','how.s1d':'Numbrit ei pea vahetama. Lihtne suunamine — klientide jaoks ei muutu midagi.',
-    'how.s2t':'Me konfigureerime Aria teie äri jaoks','how.s2d':'Seadistame stsenaariumi, keele, Google Calendari ja kõnede suunamise.',
-    'how.s3t':'Aria hakkab kõnedele vastama','how.s3d':'Iga kõne töödeldakse teie keeles ja broneering jõuab kalendrisse automaatselt.',
-    'how.s4t':'Müügivihjed ja analüütika reaalajas','how.s4d':'Iga helistaja salvestatakse — nimi, number, vajadus. Null kaotusi.',
-    'mockup.incoming':'Sissetulev kõne','mockup.number':'Teie olemasolev number','mockup.status':'Olek','mockup.active':'Aktiivne','mockup.lang':'Keel',
-    'feat.label':'Võimalused','feat.title':'Kõik, mida vajate<br><em>professionaalseks registratuuriks</em>',
-    'feat.1t':'Loomulik hääl teie keeles','feat.1d':'Aria räägib eesti, läti või leedu keeles loomuliku intonatsiooniga. Kliendid ei mõista tihti, et räägivad AI-ga.',
-    'feat.2t':'Teie olemasolev number','feat.2d':'Telefoni numbrit ei pea vahetama. Lihtne suunamine — kõik toimib läbi teie praeguse numbri.',
-    'feat.3t':'Automaatne broneerimine','feat.3d':'Aria broneerib kohtumised otse teie Google Calendaris. Kliendid saavad kinnituse kohe.',
-    'feat.4t':'Müügivihjete kogumine','feat.4d':'Iga helistaja — nimi, telefon, vajadus — salvestatakse automaatselt. Null kaotusi.',
-    'feat.5t':'5+ keelt','feat.5d':'Eesti, läti, leedu, inglise ja vene keeles. Aria vahetab automaatselt kliendi keele järgi.',
-    'feat.6t':'GDPR vastavus','feat.6d':'Kõik andmed salvestatakse EL serverites. Täielik vastavus Eesti ja Euroopa andmekaitseseadustele.',
-    'countries.title':'Saadaval kogu Baltikumis','countries.sub':'Üks teenus — kolm riiki — teie klientide keeles',
-    'testi.label':'Tagasiside','testi.title':'Mida ütlevad meie <em>kliendid</em>',
-    'stats.1':'Kõnede vastamise määr','stats.2':'Vastamisaeg','stats.3':'Balti riiki','stats.4':'Katkematu töö',
-    'pricing.label':'Hinnad','pricing.title':'Valige oma<br><em>ettevõttele sobiv</em>','pricing.sub':'Peidetud tasudeta. Teie number jääb. Tühistage igal ajal.',
-    'plan.monthly':'/kuus','plan.s.tagline':'"Ärge jätke kunagi kõnet vastamata"','plan.s.setup':'Seadistamine: <strong>€797</strong> (ühekordne)',
-    'plan.s.desc':'Ideaalne väikestele ettevõtetele — hambaravile, advokaatidele, autoservisele.',
-    'plan.s.f1':'Aria vastab teie olemasolevale numbrile 24/7','plan.s.f2':'Eesti + inglise + vene keel','plan.s.f3':'Automaatne müügivihjete kogumine',
-    'plan.s.f4':'Google Calendari integratsioon','plan.s.f5':'E-posti teavitused iga müügivihje kohta','plan.s.f6':'500 minutit kaasas',
-    'plan.s.f7':'Seadistamine 24 tunni jooksul','plan.s.f8':'Kohandatud stsenaarium','plan.s.f9':'CRM integratsioon','plan.s.btn':'Alusta Starteriga →',
-    'plan.g.tagline':'"Teie täisajaga AI registratuur"','plan.g.setup':'Seadistamine: <strong>€1,500</strong> (ühekordne)',
-    'plan.g.desc':'Kasvavatele ettevõtetele CRM-i, analüütika ja kohandatud stsenaariumiga.',
-    'plan.g.f1':'Kõik Starterist','plan.g.f2':'5+ keelt (ET, LV, LT, EN, RU, DE)','plan.g.f3':'Kohandatud kõnede stsenaarium',
-    'plan.g.f4':'CRM integratsioon (HubSpot / Pipedrive)','plan.g.f5':'SMS teavitused iga müügivihje kohta','plan.g.f6':'Reaalajas müügivihjete analüütika',
-    'plan.g.f7':'1,500 minutit kaasas','plan.g.f8':'Kõnede salvestused ja transkriptsioonid','plan.g.f9':'Prioriteetne tugi 24/7','plan.g.btn':'Alusta Growthiga →',
-    'plan.e.tagline':'"Täielik digitaalne kohalolek"','plan.e.setup':'Seadistamine: <strong style="color:var(--gold)">€3,997</strong> (ühekordne)',
-    'plan.e.period':'/kuus pärast seda','plan.e.desc':'Me loome teie ettevõtte veebilehe koos Ariaga — täielik digitaalne lahendus nullist.',
-    'plan.e.f1':'Kõik Growthist','plan.e.f2':'Kohandatud veebileht teie äri jaoks','plan.e.f3':'Aria number veebilehele sisse ehitatud',
-    'plan.e.f4':'Kliendiportaal müügivihjete ja analüütikaga','plan.e.f5':'Domeeninimi + hostimine kaasas','plan.e.f6':'Piiramatu minuteid',
-    'plan.e.f7':'Pühendatud kontohaldur','plan.e.f8':'Veebileht valmis 48 tunni jooksul','plan.e.f9':'Tasuta muudatused esimesel kuul',
-    'plan.e.btn':'Registreeru Elite →','plan.e.note':'€3,997 seadistamine · siis €797/kuus',
-    'secure.title':'Turvaline maksete töötlemine Stripe\'iga.','secure.desc':'Starter ja Growth — kohene aktiveerimine. Elite — võtame ühendust 24 tunni jooksul.',
-    'faq.label':'Küsimused','faq.title':'Korduma kippuvad <em>küsimused</em>',
-    'faq.1q':'Kas pean oma telefoninumbrit vahetama?','faq.1a':'Ei. Teie olemasolev number jääb muutumatuks. Me seadistame kõnede suunamise Ariale. Klientide jaoks ei muutu midagi.',
-    'faq.2q':'Kui kaua seadistamine aega võtab?','faq.2a':'Starter ja Growth — 24 tunni jooksul. Elite pakett veebilehega — 48 tunni jooksul.',
-    'faq.3q':'Kas Aria tõesti räägib eesti, läti ja leedu keeles?','faq.3a':'Jah — Aria kasutab ElevenLabsi uusimat hääli tehnoloogiat kõigi kolme Balti keele jaoks.',
-    'faq.4q':'Mida tähendab seadistamistasu?','faq.4a':'Seadistamistasu katab esialgse töö — Aria konfiguratsiooni, kõnede stsenaariumi loomise ja Calendari integratsiooni.',
-    'faq.5q':'Kas see vastab GDPR nõuetele?','faq.5a':'Täielikult. Kõik andmed salvestatakse EL serverites. Vastab Eesti ja Euroopa andmekaitsenõuetele.',
-    'faq.6q':'Kas saan igal ajal tühistada?','faq.6a':'Jah. Pikaajalisi kohustusi ei ole. Tühistamisel jätkub teenus kuni arveldusperioodi lõpuni.',
-    'contact.label':'Võtke ühendust','contact.title':'Alustage <em>täna</em>','contact.sub':'Täitke vorm ja me võtame teiega ühendust 24 tunni jooksul.',
-    'form.name':'Nimi, Perekonnanimi *','form.company':'Ettevõte *','form.email':'E-post *','form.phone':'Telefon',
-    'form.country':'Riik','form.plan':'Plaan','form.existing':'Teie olemasolev telefoninumber','form.message':'Lisateave',
-    'form.submit':'Saada taotlus →','form.success':'✓ Tänan! Võtame teiega ühendust 24 tunni jooksul.','form.note':'Teie andmed on kaitstud. Me ei saada rämpsposti.',
-    'form.unsure':'Pole kindel',
-    'cta.title':'Valmis muutma oma<br>ettevõtte <em>registratuuri?</em>','cta.sub':'Liituge Balti ettevõtetega, kes juba kasutavad AI-d. Teie number jääb.',
-    'cta.btn1':'Vaata hindu →','cta.btn2':'Võtke ühendust',
-    'footer.tagline':'AI häälregistratuur Balti ettevõtetele. Läti · Leedu · Eesti.',
-    'footer.product':'Toode','footer.company':'Ettevõte','footer.legal':'Juriidiline','footer.about':'Meist','footer.blog':'Blogi',
-    'footer.privacy':'Privaatsuspoliitika','footer.terms':'Kasutustingimused'
+    'how.s1t':'Ühendage oma olemasolev number','how.s1d':'Numbrit ei pea vahetama. Klientide jaoks ei muutu midagi.',
+    'how.s2t':'Me konfigureerime Aria','how.s2d':'Seadistame stsenaariumi, keele ja Google Calendari.',
+    'how.s3t':'Aria hakkab kõnedele vastama','how.s3d':'Iga kõne töödeldakse teie keeles automaatselt.',
+    'how.s4t':'Müügivihjed reaalajas','how.s4d':'Iga helistaja salvestatakse. Null kaotusi.',
+    'plan.s.btn':'Alusta Starteriga →','plan.g.btn':'Alusta Growthiga →','plan.e.btn':'Registreeru Elite →',
+    'form.submit':'Saada taotlus →','form.success':'✓ Tänan! Võtame teiega ühendust 24 tunni jooksul.',
+    'cta.btn1':'Vaata hindu →','cta.btn2':'Võtke ühendust'
   },
-  en: {
+  en:{
     'nav.how':'How it works','nav.features':'Features','nav.pricing':'Pricing','nav.faq':'FAQ','nav.contact':'Contact','nav.cta':'View pricing',
-    'hero.badge':'🌍 For the Baltic region','hero.h1':'Your business will never<br>miss another<br><em>phone call.</em>',
-    'hero.sub':'AI voice receptionist answering 24/7, speaking your language, collecting leads and booking appointments — automatically. Use your existing number.',
+    'hero.h1':'Your business will never miss<br><em>another phone call.</em>',
+    'hero.sub':'AI voice receptionist answering 24/7, speaking your language, collecting leads and booking appointments. Use your existing number.',
     'hero.cta1':'View pricing →','hero.cta2':'How it works',
     'proof.availability':'Availability','proof.response':'Response time','proof.languages':'Languages','proof.gdpr':'Compliance',
-    'logos.trusted':'Trusted by:','how.label':'How it works','how.title':'Simple to set up.<br><em>Works immediately.</em>',
-    'how.sub':'Setup takes less than 24 hours. Your existing number stays unchanged.',
-    'how.s1t':'Connect your existing number','how.s1d':'No need to change your number. Simple forwarding — nothing changes for your clients.',
-    'how.s2t':'We configure Aria for your business','how.s2d':'We set up the script, language, Google Calendar and call routing.',
-    'how.s3t':'Aria starts answering calls','how.s3d':'Every call handled in your language and booking appears in your calendar automatically.',
-    'how.s4t':'Leads and analytics in real time','how.s4d':'Every caller saved — name, number, need. Zero loss.',
-    'mockup.incoming':'Incoming call','mockup.number':'Your existing number','mockup.status':'Status','mockup.active':'Active','mockup.lang':'Language',
-    'feat.label':'Features','feat.title':'Everything you need<br><em>for a professional reception</em>',
-    'feat.1t':'Natural voice in your language','feat.1d':'Aria speaks Latvian, Lithuanian or Estonian with natural intonation. Clients often don\'t realize they\'re speaking with AI.',
-    'feat.2t':'Your existing number','feat.2d':'No need to change your phone number. Simple forwarding — everything works through your current number.',
-    'feat.3t':'Automatic booking','feat.3d':'Aria books appointments directly in your Google Calendar. Clients receive confirmation instantly.',
-    'feat.4t':'Lead capture','feat.4d':'Every caller — name, phone, need — saved automatically. Zero loss.',
-    'feat.5t':'5+ languages','feat.5d':'Latvian, Lithuanian, Estonian, English and Russian. Aria automatically switches based on the caller\'s language.',
-    'feat.6t':'GDPR compliance','feat.6d':'All data stored on EU servers. Full compliance with Baltic and European data protection laws.',
-    'countries.title':'Available across the Baltics','countries.sub':'One service — three countries — in your clients\' language',
-    'testi.label':'Testimonials','testi.title':'What our <em>clients say</em>',
-    'stats.1':'Call answer rate','stats.2':'Response time','stats.3':'Baltic countries','stats.4':'Continuous operation',
-    'pricing.label':'Pricing','pricing.title':'Choose the right plan<br><em>for your business</em>','pricing.sub':'No hidden fees. Your number stays. Cancel anytime.',
-    'plan.monthly':'/month','plan.s.tagline':'"Never miss another call"','plan.s.setup':'Setup: <strong>€797</strong> (one-time)',
-    'plan.s.desc':'Perfect for small businesses — dental clinics, law firms, auto services — wanting to answer every call automatically.',
-    'plan.s.f1':'Aria answers your existing number 24/7','plan.s.f2':'Latvian + English + Russian','plan.s.f3':'Automatic lead capture',
-    'plan.s.f4':'Google Calendar integration','plan.s.f5':'Email notifications for every lead','plan.s.f6':'500 minutes included',
-    'plan.s.f7':'Setup within 24 hours','plan.s.f8':'Custom script','plan.s.f9':'CRM integration','plan.s.btn':'Start with Starter →',
-    'plan.g.tagline':'"Your full-time AI receptionist"','plan.g.setup':'Setup: <strong>€1,500</strong> (one-time)',
-    'plan.g.desc':'For growing businesses wanting full AI reception with CRM, analytics and custom script.',
-    'plan.g.f1':'Everything in Starter','plan.g.f2':'5+ languages (LV, LT, ET, EN, RU, DE)','plan.g.f3':'Custom call script',
-    'plan.g.f4':'CRM integration (HubSpot / Pipedrive)','plan.g.f5':'SMS notifications for every lead','plan.g.f6':'Real-time leads analytics',
-    'plan.g.f7':'1,500 minutes included','plan.g.f8':'Call recordings and transcriptions','plan.g.f9':'Priority support 24/7','plan.g.btn':'Start with Growth →',
-    'plan.e.tagline':'"Complete digital presence"','plan.e.setup':'Setup: <strong style="color:var(--gold)">€3,997</strong> (one-time)',
-    'plan.e.period':'/month after that','plan.e.desc':'We build your business website with Aria already included — complete digital solution from scratch.',
-    'plan.e.f1':'Everything in Growth','plan.e.f2':'Custom website for your business','plan.e.f3':'Aria number built into the website',
-    'plan.e.f4':'Client portal with leads and analytics','plan.e.f5':'Domain name + hosting included','plan.e.f6':'Unlimited minutes',
-    'plan.e.f7':'Dedicated account manager','plan.e.f8':'Website ready in 48 hours','plan.e.f9':'Free changes in first month',
-    'plan.e.btn':'Apply for Elite →','plan.e.note':'€3,997 setup · then €797/month',
-    'secure.title':'Secure payment processing with Stripe.','secure.desc':'Starter and Growth — instant activation. Elite — we\'ll contact you within 24 hours.',
-    'faq.label':'Questions','faq.title':'Frequently asked <em>questions</em>',
-    'faq.1q':'Do I need to change my phone number?','faq.1a':'No. Your existing number stays unchanged. We set up call forwarding to Aria. Nothing changes for your clients.',
-    'faq.2q':'How long does setup take?','faq.2a':'Starter and Growth — within 24 hours. Elite Package with website — within 48 hours.',
-    'faq.3q':'Does Aria really speak Latvian, Lithuanian and Estonian?','faq.3a':'Yes — Aria uses ElevenLabs\' latest voice technology with trained models for all three Baltic languages.',
-    'faq.4q':'What does the setup fee mean?','faq.4a':'The setup fee covers the initial work — Aria configuration, call script development, Calendar integration and testing.',
-    'faq.5q':'Is it GDPR compliant?','faq.5a':'Fully. All data stored on EU servers. Compliant with Baltic and European data protection requirements.',
-    'faq.6q':'Can I cancel anytime?','faq.6a':'Yes. No long-term commitments. Upon cancellation, service continues until the end of the billing period.',
-    'contact.label':'Contact','contact.title':'Start <em>today</em>','contact.sub':'Fill in the form and we\'ll get back to you within 24 hours.',
-    'form.name':'Full Name *','form.company':'Company *','form.email':'Email *','form.phone':'Phone',
-    'form.country':'Country','form.plan':'Plan','form.existing':'Your existing phone number','form.message':'Additional information',
-    'form.submit':'Send application →','form.success':'✓ Thank you! We\'ll contact you within 24 hours.','form.note':'Your data is safe. We don\'t send spam.',
-    'form.unsure':'Not sure',
-    'cta.title':'Ready to transform your<br>business <em>reception?</em>','cta.sub':'Join Baltic businesses already using AI. Your number stays — we just add intelligence.',
-    'cta.btn1':'View pricing →','cta.btn2':'Contact us',
-    'footer.tagline':'AI voice reception for Baltic businesses. Latvia · Lithuania · Estonia.',
-    'footer.product':'Product','footer.company':'Company','footer.legal':'Legal','footer.about':'About us','footer.blog':'Blog',
-    'footer.privacy':'Privacy policy','footer.terms':'Terms of service'
+    'how.s1t':'Connect your existing number','how.s1d':'No need to change your number. Nothing changes for your clients.',
+    'how.s2t':'We configure Aria for your business','how.s2d':'We set up the script, language and Google Calendar.',
+    'how.s3t':'Aria starts answering calls','how.s3d':'Every call handled in your language automatically.',
+    'how.s4t':'Leads in real time','how.s4d':'Every caller saved. Zero loss.',
+    'plan.s.btn':'Start with Starter →','plan.g.btn':'Start with Growth →','plan.e.btn':'Apply for Elite →',
+    'form.submit':'Send application →','form.success':'✓ Thank you! We will contact you within 24 hours.',
+    'cta.btn1':'View pricing →','cta.btn2':'Contact us'
   }
 };
 
-// ═══════════════════════════════════════
-// LANGUAGE SYSTEM
-// ═══════════════════════════════════════
-let currentLang = 'lv';
+let lang = 'lv';
 
-function detectLanguage() {
-  const browserLang = navigator.language || navigator.userLanguage || 'lv';
-  const lang = browserLang.toLowerCase().substring(0,2);
-  if (lang === 'lt') return 'lt';
-  if (lang === 'et') return 'et';
-  if (lang === 'en') return 'en';
-  return 'lv';
+function detectLanguage(){
+  const l = (navigator.language||'lv').toLowerCase().substring(0,2);
+  return ['lt','et','en'].includes(l) ? l : 'lv';
 }
 
-function setLang(lang) {
-  currentLang = lang;
-  const t = TRANSLATIONS[lang];
-  if (!t) return;
-
-  // Update all elements with data-i18n
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.getAttribute('data-i18n');
-    if (t[key] !== undefined) {
-      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-        el.placeholder = t[key];
-      } else {
-        el.innerHTML = t[key];
-      }
-    }
+function setLang(l){
+  lang = l;
+  const t = T[l];
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k = el.getAttribute('data-i18n');
+    if(t[k]) el.innerHTML = t[k];
   });
-
-  // Update lang buttons
-  document.querySelectorAll('.lang-btn').forEach(btn => {
-    btn.classList.remove('active');
-    if (btn.textContent.toLowerCase().includes(lang) || btn.onclick?.toString().includes(`'${lang}'`)) {
-      btn.classList.add('active');
-    }
+  document.querySelectorAll('.lang-btn').forEach(btn=>{
+    const bl = btn.getAttribute('onclick')?.match(/'(\w+)'/)?.[1];
+    btn.classList.toggle('active', bl===l);
   });
-
-  // Fix lang buttons properly
-  document.querySelectorAll('.lang-btn').forEach(btn => {
-    const btnLang = btn.getAttribute('onclick')?.match(/'(\w+)'/)?.[1];
-    btn.classList.toggle('active', btnLang === lang);
-  });
-
-  // Update mockup language display
-  const displays = { lv: 'LV', lt: 'LT', et: 'ET', en: 'EN' };
-  const mockupLang = document.getElementById('mockup-lang-display');
-  if (mockupLang) mockupLang.textContent = displays[lang] || 'LV';
-
-  // Update html lang attribute
-  document.getElementById('html-root').setAttribute('lang', lang);
-
-  // Update success message
-  const successMsg = document.getElementById('success-msg');
-  if (successMsg && t['form.success']) successMsg.textContent = t['form.success'];
+  const ml = document.getElementById('mockup-lang-display');
+  if(ml) ml.textContent = l.toUpperCase();
+  document.getElementById('html-root').setAttribute('lang',l);
 }
 
-// ═══════════════════════════════════════
-// STRIPE PAYMENT — DIRECT PAYMENT LINKS
-// ═══════════════════════════════════════
-// These are Stripe Payment Links — no backend needed, go directly to Stripe hosted checkout
-const PAYMENT_LINKS = {
-  starter: 'https://buy.stripe.com/test_28o8wT7tM1ld5w4144', // Replace with real Stripe Payment Link
-  growth: 'https://buy.stripe.com/test_28o8wT7tM1ld5w4144'   // Replace with real Stripe Payment Link
-};
-
-const BACKEND_URL = 'https://aria-server-production.up.railway.app';
-const STRIPE_PUBLISHABLE_KEY = 'pk_test_51TBKrYJ5wzS9f2oVOETeL5Uw7onV706TFzV8Tyg5wx4ta73ZBi8M19sKGYEmILlXXdJenu3XvRU41uTgkK25lWMi00RVI760Eb';
-
-async function handleCheckout(event, plan) {
-  event.preventDefault();
-  const btn = event.currentTarget;
-  const orig = btn.textContent;
-  btn.textContent = currentLang === 'lv' ? 'Apstrādā...' : currentLang === 'lt' ? 'Apdorojama...' : currentLang === 'et' ? 'Töötleb...' : 'Processing...';
-  btn.style.opacity = '0.7';
-  btn.style.pointerEvents = 'none';
-
-  try {
-    const stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
-    const res = await fetch(BACKEND_URL + '/create-checkout-session', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ plan })
-    });
-    if (!res.ok) throw new Error('Server error ' + res.status);
-    const data = await res.json();
-    if (data.error) throw new Error(data.error);
-    const result = await stripe.redirectToCheckout({ sessionId: data.sessionId });
-    if (result.error) throw new Error(result.error.message);
-  } catch(e) {
-    console.error('Checkout error:', e);
-    btn.textContent = orig;
-    btn.style.opacity = '1';
-    btn.style.pointerEvents = 'auto';
-    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-  }
-}
-
-// ═══════════════════════════════════════
 // NAV
-// ═══════════════════════════════════════
-window.addEventListener('scroll', () => {
-  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
-});
-function toggleMenu() { document.getElementById('mobile-menu').classList.toggle('open'); }
-function closeMenu() { document.getElementById('mobile-menu').classList.remove('open'); }
-document.addEventListener('click', e => {
-  const menu = document.getElementById('mobile-menu');
-  const btn = document.querySelector('.nav-mobile-btn');
-  if (menu && btn && !menu.contains(e.target) && !btn.contains(e.target)) menu.classList.remove('open');
+window.addEventListener('scroll',()=>{ document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>20); });
+function toggleMenu(){ document.getElementById('mobile-menu').classList.toggle('open'); }
+function closeMenu(){ document.getElementById('mobile-menu').classList.remove('open'); }
+document.addEventListener('click',e=>{
+  const menu=document.getElementById('mobile-menu');
+  const btn=document.querySelector('.nav-mobile-btn');
+  if(menu&&btn&&!menu.contains(e.target)&&!btn.contains(e.target)) menu.classList.remove('open');
 });
 
 // HOW STEPS
-function setStep(i) {
-  document.querySelectorAll('.how-step').forEach((s, j) => s.classList.toggle('active', i === j));
-}
+function setStep(i){ document.querySelectorAll('.how-step').forEach((s,j)=>s.classList.toggle('active',i===j)); }
 
 // FAQ
-function tfaq(i) {
-  const item = document.querySelectorAll('.faq-item')[i];
-  const open = item.classList.contains('open');
-  document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('open'));
-  document.querySelectorAll('.faq-icon').forEach(el => el.textContent = '+');
-  if (!open) { item.classList.add('open'); document.getElementById('fi' + i).textContent = '+'; }
+function tfaq(i){
+  const item=document.querySelectorAll('.faq-item')[i];
+  const open=item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(el=>el.classList.remove('open'));
+  document.querySelectorAll('.faq-icon').forEach(el=>el.textContent='+');
+  if(!open){item.classList.add('open');document.getElementById('fi'+i).textContent='+';}
 }
 
 // FORM
-function submitForm(e) {
+function submitForm(e){
   e.preventDefault();
-  const form = document.getElementById('contact-form');
-  const data = new FormData(form);
-  fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
-    .then(res => {
-      if (res.ok) {
-        form.style.display = 'none';
-        const msg = document.getElementById('success-msg');
-        msg.style.display = 'block';
-        msg.textContent = TRANSLATIONS[currentLang]['form.success'] || '✓ Paldies!';
-      } else { alert('Error. Please try again.'); }
-    }).catch(() => alert('Error. Please try again.'));
+  const form=document.getElementById('contact-form');
+  fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}})
+  .then(res=>{
+    if(res.ok){
+      form.style.display='none';
+      const msg=document.getElementById('success-msg');
+      msg.style.display='block';
+      msg.textContent=T[lang]['form.success']||'✓ Paldies!';
+    } else alert('Error. Please try again.');
+  }).catch(()=>alert('Error. Please try again.'));
 }
 
 // REVEAL
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(el => { if (el.isIntersecting) el.target.classList.add('visible'); });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(el=>{if(el.isIntersecting)el.target.classList.add('visible');});
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 
-// SUCCESS BANNER
-window.addEventListener('load', () => {
-  // Auto-detect language
-  const detected = detectLanguage();
-  setLang(detected);
-
-  if (window.location.search.includes('payment=success')) {
-    document.body.insertAdjacentHTML('afterbegin', `
-      <div style="position:fixed;top:0;left:0;right:0;z-index:9999;background:#0F6E56;color:white;text-align:center;padding:14px 16px;font-size:14px;font-weight:500;">
-        ✅ ${TRANSLATIONS[currentLang]['form.success'] || 'Maksājums veiksmīgs! Mēs sazināsimies 24 stundu laikā.'}
-        <button onclick="this.parentElemen
+// ON LOAD
+window.addEventListener('load',()=>{
+  setLang(detectLanguage());
+  if(window.location.search.includes('payment=success')){
+    document.body.insertAdjacentHTML('afterbegin','<div style="position:fixed;top:0;left:0;right:0;z-index:9999;background:#0F6E56;color:white;text-align:center;padding:14px;font-size:14px;font-weight:500;">✅ Maksājums veiksmīgs! Mēs sazināsimies 24 stundu laikā. <button onclick="this.parentElement.remove()" style="background:none;border:none;color:white;cursor:pointer;margin-left:12px;font-size:16px;">✕</button></div>');
+    window.history.replaceState({},'',window.location.pathname);
+  }
+});
+</script>
+</body>
+</html>
