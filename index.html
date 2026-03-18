@@ -1,12 +1,18 @@
 <!DOCTYPE html>
-<html lang="lv">
+<html lang="lv" id="html-root">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0"/>
-<title>Elite Call Reception — AI balss reģistratūra Latvijas uzņēmumiem</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Elite Call Reception — AI balss reģistratūra Baltijas uzņēmumiem</title>
+<meta name="description" content="AI balss reģistratūra Latvijas, Lietuvas un Igaunijas uzņēmumiem. Aria atbild uz zvaniem 24/7, savāc leads un rezervē tikšanās automātiski."/>
+
+<!-- Favicon / Tab icon -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230A5C46'/%3E%3Ctext x='16' y='22' font-size='18' text-anchor='middle' fill='white'%3E📞%3C/text%3E%3C/svg%3E"/>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital,wght@0,400;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
@@ -19,46 +25,53 @@ html{scroll-behavior:smooth;}
 body{font-family:var(--sans);color:var(--ink);background:var(--white);overflow-x:hidden;-webkit-text-size-adjust:100%;}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 24px;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);transition:box-shadow 0.3s;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:12px 24px;background:rgba(255,255,255,0.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);transition:box-shadow 0.3s;}
 nav.scrolled{box-shadow:0 2px 20px rgba(10,92,70,0.1);}
-.nav-logo{display:flex;align-items:center;gap:8px;font-weight:600;font-size:15px;text-decoration:none;color:var(--ink);}
-.nav-dot{width:9px;height:9px;border-radius:50%;background:var(--green-mid);animation:pulse 2.5s infinite;flex-shrink:0;}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.6;transform:scale(1.2)}}
+.nav-logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;text-decoration:none;color:var(--ink);}
+.logo-mark{width:34px;height:34px;border-radius:9px;background:var(--green);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.logo-mark svg{width:20px;height:20px;}
 .nav-links{display:flex;align-items:center;gap:28px;}
 .nav-links a{font-size:13px;color:var(--ink-mid);text-decoration:none;transition:color 0.2s;}
 .nav-links a:hover{color:var(--green);}
+.lang-switcher{display:flex;align-items:center;gap:4px;margin-left:8px;}
+.lang-btn{background:none;border:1px solid var(--border);border-radius:6px;padding:4px 8px;font-size:12px;font-weight:500;cursor:pointer;color:var(--ink-light);font-family:var(--sans);transition:all 0.15s;}
+.lang-btn.active{background:var(--green);color:white;border-color:var(--green);}
 .nav-cta{background:var(--green);color:var(--white);border:none;padding:10px 20px;border-radius:8px;font-size:13px;font-weight:600;font-family:var(--sans);cursor:pointer;transition:all 0.2s;white-space:nowrap;}
 .nav-cta:hover{background:var(--green-mid);}
 .nav-mobile-btn{display:none;background:none;border:none;cursor:pointer;padding:4px;flex-direction:column;gap:5px;}
-.nav-mobile-btn span{display:block;width:22px;height:2px;background:var(--ink);border-radius:2px;transition:all 0.3s;}
-.mobile-menu{display:none;position:fixed;top:57px;left:0;right:0;background:var(--white);border-bottom:1px solid var(--border);padding:16px 24px;flex-direction:column;gap:0;z-index:99;box-shadow:0 8px 24px rgba(0,0,0,0.08);}
+.nav-mobile-btn span{display:block;width:22px;height:2px;background:var(--ink);border-radius:2px;}
+.mobile-menu{display:none;position:fixed;top:57px;left:0;right:0;background:var(--white);border-bottom:1px solid var(--border);padding:16px 20px;flex-direction:column;z-index:99;box-shadow:0 8px 24px rgba(0,0,0,0.08);}
 .mobile-menu.open{display:flex;}
-.mobile-menu a{padding:14px 0;font-size:15px;color:var(--ink-mid);text-decoration:none;border-bottom:1px solid var(--border);}
-.mobile-menu a:last-child{border-bottom:none;}
-.mobile-menu .mob-cta{margin-top:12px;background:var(--green);color:white;text-align:center;padding:14px;border-radius:10px;font-weight:600;border:none;}
+.mobile-menu a{padding:13px 0;font-size:15px;color:var(--ink-mid);text-decoration:none;border-bottom:1px solid var(--border);}
+.mob-cta{margin-top:12px;background:var(--green);color:white!important;text-align:center;padding:14px;border-radius:10px;font-weight:600;border:none;}
+.mob-langs{display:flex;gap:8px;padding:12px 0;border-bottom:1px solid var(--border);}
 
 /* HERO */
 .hero{min-height:100svh;display:flex;align-items:center;justify-content:center;padding:100px 24px 60px;position:relative;overflow:hidden;background:var(--white);}
-.hero-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 70% 60% at 70% 20%,rgba(29,158,117,0.08) 0%,transparent 70%),radial-gradient(ellipse 50% 70% at 10% 90%,rgba(10,92,70,0.05) 0%,transparent 60%);}
+.hero-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 70% 60% at 75% 20%,rgba(29,158,117,0.08),transparent 70%),radial-gradient(ellipse 50% 70% at 10% 90%,rgba(10,92,70,0.05),transparent 60%);}
 .hero-grid{position:absolute;inset:0;z-index:0;opacity:0.02;background-image:linear-gradient(var(--green) 1px,transparent 1px),linear-gradient(90deg,var(--green) 1px,transparent 1px);background-size:40px 40px;}
 .hero-inner{position:relative;z-index:1;max-width:860px;text-align:center;width:100%;}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--green-light);color:var(--green);font-size:11px;font-weight:600;letter-spacing:0.08em;padding:6px 14px;border-radius:999px;margin-bottom:28px;text-transform:uppercase;animation:fadeUp 0.6s ease both;}
-.hero h1{font-family:var(--serif);font-size:clamp(36px,8vw,76px);line-height:1.06;color:var(--ink);margin-bottom:20px;animation:fadeUp 0.6s 0.1s ease both;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--green-light);color:var(--green);font-size:11px;font-weight:600;letter-spacing:0.08em;padding:6px 16px;border-radius:999px;margin-bottom:28px;text-transform:uppercase;animation:fadeUp 0.6s ease both;}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:blink 2s infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+.hero h1{font-family:var(--serif);font-size:clamp(34px,8vw,76px);line-height:1.06;color:var(--ink);margin-bottom:20px;animation:fadeUp 0.6s 0.1s ease both;}
 .hero h1 em{color:var(--green);font-style:italic;}
 .hero-sub{font-size:clamp(15px,2.5vw,19px);color:var(--ink-mid);max-width:540px;margin:0 auto 36px;line-height:1.65;font-weight:300;animation:fadeUp 0.6s 0.2s ease both;}
 .hero-ctas{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;animation:fadeUp 0.6s 0.3s ease both;}
-.btn-primary{background:var(--green);color:var(--white);border:none;padding:14px 28px;border-radius:10px;font-size:15px;font-weight:600;font-family:var(--sans);cursor:pointer;transition:all 0.2s;text-decoration:none;display:inline-block;-webkit-tap-highlight-color:transparent;}
+.btn-primary{background:var(--green);color:var(--white);border:none;padding:15px 32px;border-radius:10px;font-size:15px;font-weight:600;font-family:var(--sans);cursor:pointer;transition:all 0.2s;text-decoration:none;display:inline-block;}
 .btn-primary:hover{background:var(--green-mid);transform:translateY(-2px);box-shadow:0 8px 24px rgba(10,92,70,0.2);}
-.btn-secondary{background:none;color:var(--ink);border:1.5px solid var(--border);padding:14px 28px;border-radius:10px;font-size:15px;font-family:var(--sans);cursor:pointer;transition:all 0.2s;text-decoration:none;display:inline-block;-webkit-tap-highlight-color:transparent;}
+.btn-secondary{background:none;color:var(--ink);border:1.5px solid var(--border);padding:15px 32px;border-radius:10px;font-size:15px;font-family:var(--sans);cursor:pointer;transition:all 0.2s;display:inline-block;}
 .btn-secondary:hover{background:var(--green-pale);border-color:var(--green-mid);}
 .hero-proof{margin-top:48px;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;animation:fadeUp 0.6s 0.4s ease both;color:var(--ink-light);font-size:12px;}
-.proof-item{text-align:center;min-width:60px;}
+.proof-item{text-align:center;min-width:56px;}
 .proof-num{font-size:20px;font-weight:600;color:var(--green);display:block;margin-bottom:2px;}
 .proof-div{width:1px;height:28px;background:var(--border);}
+.hero-countries{margin-top:24px;animation:fadeUp 0.6s 0.5s ease both;display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;}
+.country-tag{display:inline-flex;align-items:center;gap:6px;background:var(--cream);border:1px solid var(--border);padding:5px 12px;border-radius:999px;font-size:12px;font-weight:500;color:var(--ink-mid);}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 
 /* LOGO BAR */
-.logobar{background:var(--cream);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:20px 24px;display:flex;align-items:center;justify-content:center;gap:28px;flex-wrap:wrap;}
+.logobar{background:var(--cream);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:18px 24px;display:flex;align-items:center;justify-content:center;gap:28px;flex-wrap:wrap;}
 .logobar-label{font-size:11px;color:var(--ink-light);text-transform:uppercase;letter-spacing:0.08em;font-weight:500;}
 .fake-logo{font-family:var(--serif);font-size:16px;color:var(--ink-light);opacity:0.6;}
 
@@ -80,14 +93,12 @@ section{padding:72px 24px;}
 .how-step-title{font-size:15px;font-weight:600;margin-bottom:4px;color:var(--ink);}
 .how-step-desc{font-size:13px;color:var(--ink-light);line-height:1.6;}
 .how-visual{background:var(--ink);border-radius:20px;overflow:hidden;aspect-ratio:4/3;position:relative;display:flex;align-items:center;justify-content:center;}
-.phone-mockup{width:190px;background:rgba(255,255,255,0.06);border-radius:24px;border:1px solid rgba(255,255,255,0.1);padding:18px 14px;display:flex;flex-direction:column;gap:10px;}
+.how-visual-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 70% 30%,rgba(29,158,117,0.15),transparent 60%);}
+.phone-mockup{width:190px;background:rgba(255,255,255,0.06);border-radius:24px;border:1px solid rgba(255,255,255,0.1);padding:18px 14px;display:flex;flex-direction:column;gap:10px;position:relative;z-index:1;}
 .call-wave{display:flex;align-items:center;justify-content:center;gap:4px;padding:12px 0;}
 .wave-bar{width:4px;border-radius:2px;background:var(--green-mid);animation:wave 1.2s infinite ease-in-out;}
-.wave-bar:nth-child(1){height:10px;animation-delay:0s}.wave-bar:nth-child(2){height:20px;animation-delay:0.1s}.wave-bar:nth-child(3){height:32px;animation-delay:0.2s}.wave-bar:nth-child(4){height:22px;animation-delay:0.3s}.wave-bar:nth-child(5){height:14px;animation-delay:0.4s}.wave-bar:nth-child(6){height:26px;animation-delay:0.15s}.wave-bar:nth-child(7){height:18px;animation-delay:0.25s}
+.wave-bar:nth-child(1){height:10px}.wave-bar:nth-child(2){height:20px;animation-delay:.1s}.wave-bar:nth-child(3){height:32px;animation-delay:.2s}.wave-bar:nth-child(4){height:22px;animation-delay:.3s}.wave-bar:nth-child(5){height:14px;animation-delay:.4s}.wave-bar:nth-child(6){height:26px;animation-delay:.15s}.wave-bar:nth-child(7){height:18px;animation-delay:.25s}
 @keyframes wave{0%,100%{transform:scaleY(1)}50%{transform:scaleY(0.4)}}
-.phone-caller{font-size:13px;color:rgba(255,255,255,0.85);text-align:center;font-weight:500;}
-.phone-label{font-size:11px;color:rgba(255,255,255,0.4);text-align:center;}
-.how-visual-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 70% 30%,rgba(29,158,117,0.15) 0%,transparent 60%);}
 
 /* FEATURES */
 .features{background:var(--cream);}
@@ -96,20 +107,21 @@ section{padding:72px 24px;}
 .feat-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:24px 20px;transition:all 0.25s;}
 .feat-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(10,92,70,0.1);border-color:rgba(29,158,117,0.3);}
 .feat-icon{width:44px;height:44px;border-radius:12px;background:var(--green-light);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:14px;}
-.feat-title{font-size:15px;font-weight:600;margin-bottom:6px;color:var(--ink);}
+.feat-title{font-size:15px;font-weight:600;margin-bottom:6px;}
 .feat-desc{font-size:13px;color:var(--ink-light);line-height:1.65;}
 
-/* NUMBER SECTION */
-.number-section{background:var(--white);text-align:center;}
-.number-inner{max-width:700px;margin:0 auto;}
-.number-box{background:var(--green-light);border:1px solid rgba(29,158,117,0.3);border-radius:16px;padding:32px 24px;margin-top:32px;}
-.number-box h3{font-family:var(--serif);font-size:clamp(22px,4vw,32px);color:var(--green);margin-bottom:12px;}
-.number-box p{font-size:15px;color:var(--ink-mid);line-height:1.7;max-width:500px;margin:0 auto;}
-.number-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px;}
-.num-step{background:var(--white);border-radius:12px;padding:18px;border:1px solid var(--border);}
-.num-step-n{font-family:var(--serif);font-size:32px;color:var(--green);display:block;margin-bottom:6px;}
-.num-step-t{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px;}
-.num-step-d{font-size:12px;color:var(--ink-light);line-height:1.5;}
+/* COUNTRIES */
+.countries{background:var(--green);padding:60px 24px;}
+.countries-inner{max-width:1000px;margin:0 auto;text-align:center;}
+.countries-inner h2{font-family:var(--serif);font-size:clamp(26px,4vw,40px);color:white;margin-bottom:12px;}
+.countries-inner p{font-size:16px;color:rgba(255,255,255,0.7);margin-bottom:36px;}
+.countries-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.country-card{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:16px;padding:24px 20px;text-align:center;transition:all 0.2s;}
+.country-card:hover{background:rgba(255,255,255,0.15);}
+.country-flag{font-size:36px;margin-bottom:10px;}
+.country-name{font-size:16px;font-weight:600;color:white;margin-bottom:6px;}
+.country-lang{font-size:13px;color:rgba(255,255,255,0.65);}
+.country-sample{font-size:12px;color:rgba(255,255,255,0.5);margin-top:8px;font-style:italic;}
 
 /* TESTIMONIALS */
 .testimonials{background:var(--cream);}
@@ -124,49 +136,47 @@ section{padding:72px 24px;}
 .testi-role{font-size:11px;color:var(--ink-light);}
 
 /* STATS */
-.stats{background:var(--green);padding:60px 24px;}
+.stats{background:var(--ink);padding:60px 24px;}
 .stats-inner{max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center;}
 .stat-n{font-family:var(--serif);font-size:clamp(36px,6vw,52px);color:white;line-height:1;margin-bottom:6px;}
-.stat-l{font-size:13px;color:rgba(255,255,255,0.7);}
+.stat-l{font-size:13px;color:rgba(255,255,255,0.55);}
 
 /* PRICING */
 .pricing{background:var(--cream);}
 .pricing-header{text-align:center;max-width:560px;margin:0 auto 44px;}
 .plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:1200px;margin:0 auto 32px;}
-.plan{background:var(--white);border:1px solid var(--border);border-radius:20px;padding:28px 24px;display:flex;flex-direction:column;transition:all 0.25s;position:relative;}
+.plan{background:var(--white);border:1px solid var(--border);border-radius:20px;padding:28px 24px;display:flex;flex-direction:column;position:relative;transition:all 0.25s;}
 .plan:hover{box-shadow:0 12px 40px rgba(10,92,70,0.1);}
 .plan.featured{background:var(--green);border-color:var(--green);color:white;transform:scale(1.03);}
 .plan.featured:hover{transform:scale(1.03) translateY(-4px);}
 .plan.elite{border-color:var(--gold);border-width:2px;}
-.plan-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);font-size:11px;font-weight:600;padding:4px 14px;border-radius:999px;white-space:nowrap;}
-.plan-badge.green{background:var(--gold);color:var(--ink);}
-.plan-badge.elite{background:var(--ink);color:var(--gold);}
-.plan-tier{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;opacity:0.65;margin-bottom:10px;}
-.plan-tagline{font-size:13px;font-style:italic;opacity:0.7;margin-bottom:14px;font-family:var(--serif);}
+.plan-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);font-size:11px;font-weight:600;padding:4px 16px;border-radius:999px;white-space:nowrap;}
+.badge-green{background:var(--gold);color:var(--ink);}
+.badge-elite{background:var(--ink);color:var(--gold);}
+.plan-tier{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;opacity:0.6;margin-bottom:6px;}
+.plan-tagline{font-size:13px;font-style:italic;opacity:0.7;margin-bottom:12px;font-family:var(--serif);}
 .plan-setup{font-size:13px;margin-bottom:4px;opacity:0.7;}
 .plan-amount{font-family:var(--serif);font-size:clamp(36px,5vw,52px);line-height:1;margin-bottom:2px;}
 .plan-amount sup{font-size:22px;vertical-align:super;}
 .plan-period{font-size:13px;opacity:0.6;margin-bottom:14px;}
-.plan-desc{font-size:13px;line-height:1.6;opacity:0.75;padding-bottom:18px;border-bottom:1px solid rgba(10,92,70,0.12);margin-bottom:18px;}
+.plan-desc{font-size:13px;line-height:1.6;opacity:0.75;padding-bottom:16px;border-bottom:1px solid rgba(10,92,70,0.12);margin-bottom:16px;}
 .plan.featured .plan-desc{border-bottom-color:rgba(255,255,255,0.2);}
 .plan.elite .plan-desc{border-bottom-color:rgba(200,169,110,0.3);}
-.plan-features{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:24px;flex:1;}
+.plan-features{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:22px;flex:1;}
 .plan-features li{font-size:13px;display:flex;align-items:flex-start;gap:8px;line-height:1.4;}
 .ck{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;flex-shrink:0;margin-top:1px;}
 .plan .ck{background:var(--green-light);color:var(--green);}
 .plan.featured .ck{background:rgba(255,255,255,0.2);color:white;}
 .plan.elite .ck{background:rgba(200,169,110,0.2);color:var(--gold);}
 .ck.no{background:rgba(0,0,0,0.05)!important;color:var(--ink-light)!important;}
-.plan-btn{width:100%;padding:13px;border-radius:10px;font-size:14px;font-weight:600;font-family:var(--sans);cursor:pointer;transition:all 0.2s;border:none;-webkit-tap-highlight-color:transparent;}
+.plan-btn{width:100%;padding:13px;border-radius:10px;font-size:14px;font-weight:600;font-family:var(--sans);cursor:pointer;transition:all 0.2s;border:none;text-decoration:none;display:block;text-align:center;}
 .plan-btn.dark{background:var(--ink);color:white;}
 .plan-btn.dark:hover{background:var(--green);}
 .plan-btn.light{background:white;color:var(--green);}
 .plan-btn.light:hover{background:var(--green-light);}
-.plan-btn.gold{background:var(--gold);color:var(--ink);}
-.plan-btn.gold:hover{background:#d4b87a;}
-.plan-btn.outline{background:none;border:1px solid var(--border);color:var(--ink);}
-.plan-btn.outline:hover{background:var(--green-pale);}
-.plan-note{font-size:11px;text-align:center;margin-top:8px;opacity:0.55;}
+.plan-btn.gold-btn{background:var(--gold);color:var(--ink);}
+.plan-btn.gold-btn:hover{background:#d4b87a;}
+.plan-note{font-size:11px;text-align:center;margin-top:8px;opacity:0.5;}
 .secure-bar{max-width:1200px;margin:0 auto;background:white;border:1px solid var(--border);border-radius:var(--r);padding:16px 20px;display:flex;align-items:center;gap:12px;font-size:13px;color:var(--ink-mid);}
 .secure-bar strong{color:var(--ink);}
 
@@ -175,7 +185,7 @@ section{padding:72px 24px;}
 .faq-inner{max-width:680px;margin:0 auto;}
 .faq-header{text-align:center;margin-bottom:40px;}
 .faq-item{border-bottom:1px solid var(--border);}
-.faq-q{width:100%;background:none;border:none;text-align:left;padding:18px 0;font-size:15px;font-weight:500;cursor:pointer;display:flex;justify-content:space-between;align-items:center;color:var(--ink);font-family:var(--sans);gap:16px;-webkit-tap-highlight-color:transparent;}
+.faq-q{width:100%;background:none;border:none;text-align:left;padding:18px 0;font-size:15px;font-weight:500;cursor:pointer;display:flex;justify-content:space-between;align-items:center;color:var(--ink);font-family:var(--sans);gap:16px;}
 .faq-icon{width:24px;height:24px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--ink-light);flex-shrink:0;transition:all 0.2s;}
 .faq-item.open .faq-icon{background:var(--green);color:white;border-color:var(--green);transform:rotate(45deg);}
 .faq-a{font-size:14px;color:var(--ink-mid);line-height:1.7;max-height:0;overflow:hidden;transition:max-height 0.3s ease,padding 0.3s;font-weight:300;}
@@ -188,25 +198,25 @@ section{padding:72px 24px;}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
 .form-group{display:flex;flex-direction:column;gap:5px;}
 .form-group.full{grid-column:1/-1;}
-.form-group label{font-size:12px;font-weight:600;color:var(--ink-mid);letter-spacing:0.03em;}
-.form-group input,.form-group select,.form-group textarea{padding:12px 14px;border:1px solid var(--border);border-radius:9px;font-size:14px;font-family:var(--sans);color:var(--ink);background:white;outline:none;transition:border-color 0.2s;-webkit-appearance:none;appearance:none;}
+.form-group label{font-size:12px;font-weight:600;color:var(--ink-mid);}
+.form-group input,.form-group select,.form-group textarea{padding:12px 14px;border:1px solid var(--border);border-radius:9px;font-size:14px;font-family:var(--sans);color:var(--ink);background:white;outline:none;transition:border-color 0.2s;-webkit-appearance:none;}
 .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--green-mid);}
 .form-group textarea{resize:vertical;min-height:90px;}
-.form-submit{width:100%;margin-top:4px;background:var(--green);color:white;border:none;padding:15px;border-radius:10px;font-size:15px;font-weight:600;font-family:var(--sans);cursor:pointer;transition:all 0.2s;-webkit-tap-highlight-color:transparent;}
+.form-submit{width:100%;margin-top:4px;background:var(--green);color:white;border:none;padding:15px;border-radius:10px;font-size:15px;font-weight:600;font-family:var(--sans);cursor:pointer;transition:all 0.2s;}
 .form-submit:hover{background:var(--green-mid);}
 .form-note{font-size:11px;color:var(--ink-light);text-align:center;margin-top:10px;}
 .success-msg{display:none;background:var(--green-light);border:1px solid rgba(29,158,117,0.3);border-radius:10px;padding:20px;text-align:center;color:var(--green);font-size:15px;font-weight:500;}
 
-/* CTA BOTTOM */
+/* CTA */
 .cta-bottom{background:var(--ink);padding:80px 24px;text-align:center;position:relative;overflow:hidden;}
-.cta-bottom-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 100%,rgba(29,158,117,0.15) 0%,transparent 70%);}
+.cta-bottom-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 100%,rgba(29,158,117,0.15),transparent 70%);}
 .cta-bottom h2{font-family:var(--serif);font-size:clamp(28px,5vw,52px);color:white;line-height:1.1;margin-bottom:16px;position:relative;}
 .cta-bottom h2 em{color:var(--green-mid);font-style:italic;}
 .cta-bottom p{font-size:16px;color:rgba(255,255,255,0.6);margin-bottom:32px;position:relative;}
-.cta-bottom-btns{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;position:relative;}
-.btn-white{background:white;color:var(--green);border:none;padding:14px 28px;border-radius:10px;font-size:15px;font-weight:600;font-family:var(--sans);cursor:pointer;transition:all 0.2s;-webkit-tap-highlight-color:transparent;}
+.cta-btns{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;position:relative;}
+.btn-white{background:white;color:var(--green);border:none;padding:14px 28px;border-radius:10px;font-size:15px;font-weight:600;font-family:var(--sans);cursor:pointer;transition:all 0.2s;}
 .btn-white:hover{background:var(--green-light);}
-.btn-ghost{background:none;color:rgba(255,255,255,0.7);border:1.5px solid rgba(255,255,255,0.2);padding:14px 28px;border-radius:10px;font-size:15px;font-family:var(--sans);cursor:pointer;transition:all 0.2s;-webkit-tap-highlight-color:transparent;}
+.btn-ghost{background:none;color:rgba(255,255,255,0.7);border:1.5px solid rgba(255,255,255,0.2);padding:14px 28px;border-radius:10px;font-size:15px;font-family:var(--sans);cursor:pointer;transition:all 0.2s;}
 .btn-ghost:hover{background:rgba(255,255,255,0.08);color:white;}
 
 /* FOOTER */
@@ -214,103 +224,128 @@ footer{background:var(--ink);padding:40px 24px 24px;border-top:1px solid rgba(25
 .footer-inner{max-width:1100px;margin:0 auto;}
 .footer-top{display:flex;align-items:flex-start;justify-content:space-between;gap:32px;padding-bottom:28px;border-bottom:1px solid rgba(255,255,255,0.08);margin-bottom:20px;flex-wrap:wrap;}
 .footer-brand{max-width:240px;}
-.footer-logo{display:flex;align-items:center;gap:8px;color:white;font-size:15px;font-weight:600;margin-bottom:10px;}
+.footer-logo{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:600;color:white;margin-bottom:10px;}
+.footer-logo-mark{width:28px;height:28px;border-radius:7px;background:var(--green);display:flex;align-items:center;justify-content:center;}
 .footer-tagline{font-size:12px;color:rgba(255,255,255,0.4);line-height:1.6;}
-.footer-col h4{font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:12px;}
-.footer-col a{display:block;font-size:13px;color:rgba(255,255,255,0.55);text-decoration:none;margin-bottom:8px;transition:color 0.2s;}
+.footer-col h4{font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:12px;}
+.footer-col a{display:block;font-size:13px;color:rgba(255,255,255,0.5);text-decoration:none;margin-bottom:8px;transition:color 0.2s;}
 .footer-col a:hover{color:white;}
 .footer-bottom{display:flex;align-items:center;justify-content:space-between;font-size:11px;color:rgba(255,255,255,0.3);flex-wrap:wrap;gap:8px;}
+.footer-flags{display:flex;gap:6px;margin-top:8px;}
 
 .reveal{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
 
 /* MOBILE */
 @media(max-width:768px){
-  nav{padding:12px 16px;}
-  .nav-links{display:none;}
-  .nav-cta{display:none;}
+  nav{padding:11px 16px;}
+  .nav-links,.nav-cta{display:none;}
   .nav-mobile-btn{display:flex;}
   section{padding:56px 16px;}
-  .hero{padding:88px 16px 52px;}
-  .hero-proof{gap:12px;}
+  .hero{padding:86px 16px 52px;}
+  .hero-proof{gap:10px;}
   .proof-div{display:none;}
-  .logobar{padding:16px;gap:16px;}
+  .logobar{padding:14px 16px;gap:14px;}
   .how-grid{grid-template-columns:1fr;}
   .how-visual{display:none;}
   .features-grid{grid-template-columns:1fr;}
-  .number-steps{grid-template-columns:1fr;}
+  .countries-grid{grid-template-columns:1fr;}
   .testi-grid{grid-template-columns:1fr;}
-  .plans-grid{grid-template-columns:1fr;max-width:420px;margin:0 auto 32px;}
+  .plans-grid{grid-template-columns:1fr;max-width:400px;margin:0 auto 32px;}
   .plan.featured{transform:none;}
-  .plan.featured:hover{transform:translateY(-4px);}
   .stats-inner{grid-template-columns:repeat(2,1fr);gap:20px;}
   .form-grid{grid-template-columns:1fr;}
-  .footer-top{flex-direction:column;gap:24px;}
-  .footer-col{min-width:140px;}
-  .cta-bottom-btns{flex-direction:column;align-items:stretch;max-width:320px;margin:0 auto;}
+  .footer-top{flex-direction:column;}
+  .cta-btns{flex-direction:column;align-items:stretch;max-width:300px;margin:0 auto;}
   .hero-ctas{flex-direction:column;align-items:stretch;max-width:280px;margin:0 auto 0;}
-  .btn-primary,.btn-secondary{text-align:center;}
-  .secure-bar{flex-direction:column;text-align:center;gap:8px;}
+  .secure-bar{flex-direction:column;text-align:center;}
 }
 @media(max-width:480px){
-  .hero h1{font-size:32px;}
-  .plan{padding:24px 18px;}
-  .feat-card{padding:20px 16px;}
-  .testi-card{padding:20px 16px;}
+  .hero h1{font-size:30px;}
+  .plan{padding:22px 16px;}
 }
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav id="navbar">
-  <a href="#" class="nav-logo"><div class="nav-dot"></div>Elite Call Reception</a>
+  <a href="#" class="nav-logo">
+    <div class="logo-mark">
+      <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 2C7.8 2 6 3.8 6 6c0 1.5.8 2.8 2 3.5V11l-2 2h8l-2-2V9.5c1.2-.7 2-2 2-3.5 0-2.2-1.8-4-4-4z" fill="white" opacity="0.9"/>
+        <rect x="7" y="13" width="6" height="1.5" rx="0.75" fill="white" opacity="0.7"/>
+        <rect x="8" y="15" width="4" height="1.5" rx="0.75" fill="white" opacity="0.5"/>
+      </svg>
+    </div>
+    Elite Call Reception
+  </a>
   <div class="nav-links">
-    <a href="#how">Kā tas darbojas</a>
-    <a href="#features">Iespējas</a>
-    <a href="#pricing">Cenas</a>
-    <a href="#faq">BUJ</a>
-    <a href="#contact">Kontakti</a>
+    <a href="#how" data-i18n="nav.how">Kā tas darbojas</a>
+    <a href="#features" data-i18n="nav.features">Iespējas</a>
+    <a href="#pricing" data-i18n="nav.pricing">Cenas</a>
+    <a href="#faq" data-i18n="nav.faq">BUJ</a>
+    <a href="#contact" data-i18n="nav.contact">Kontakti</a>
+    <div class="lang-switcher">
+      <button class="lang-btn active" onclick="setLang('lv')">LV</button>
+      <button class="lang-btn" onclick="setLang('lt')">LT</button>
+      <button class="lang-btn" onclick="setLang('et')">ET</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
   </div>
-  <button class="nav-cta" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">Skatīt cenas</button>
+  <button class="nav-cta" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})" data-i18n="nav.cta">Skatīt cenas</button>
   <button class="nav-mobile-btn" onclick="toggleMenu()" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
 <div class="mobile-menu" id="mobile-menu">
-  <a href="#how" onclick="closeMenu()">Kā tas darbojas</a>
-  <a href="#features" onclick="closeMenu()">Iespējas</a>
-  <a href="#pricing" onclick="closeMenu()">Cenas</a>
-  <a href="#faq" onclick="closeMenu()">BUJ</a>
-  <a href="#contact" onclick="closeMenu()">Kontakti</a>
-  <a href="#pricing" class="mob-cta" onclick="closeMenu()">Skatīt cenas →</a>
+  <div class="mob-langs">
+    <button class="lang-btn active" onclick="setLang('lv');closeMenu()">🇱🇻 LV</button>
+    <button class="lang-btn" onclick="setLang('lt');closeMenu()">🇱🇹 LT</button>
+    <button class="lang-btn" onclick="setLang('et');closeMenu()">🇪🇪 ET</button>
+    <button class="lang-btn" onclick="setLang('en');closeMenu()">🇬🇧 EN</button>
+  </div>
+  <a href="#how" onclick="closeMenu()" data-i18n="nav.how">Kā tas darbojas</a>
+  <a href="#features" onclick="closeMenu()" data-i18n="nav.features">Iespējas</a>
+  <a href="#pricing" onclick="closeMenu()" data-i18n="nav.pricing">Cenas</a>
+  <a href="#faq" onclick="closeMenu()" data-i18n="nav.faq">BUJ</a>
+  <a href="#contact" onclick="closeMenu()" data-i18n="nav.contact">Kontakti</a>
+  <a href="#pricing" class="mob-cta" onclick="closeMenu()" data-i18n="nav.cta">Skatīt cenas →</a>
 </div>
 
+<!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
   <div class="hero-inner">
-    <div class="hero-badge">🇱🇻 Izstrādāts Latvijas tirgum</div>
-    <h1>Jūsu uzņēmums nekad<br>nepalaiž garām<br><em>nevienu zvanu.</em></h1>
-    <p class="hero-sub">AI balss reģistratūra, kas atbild 24/7, runā latviešu valodā, savāc leads un rezervē tikšanās — bez cilvēka iesaistes. Izmantojiet savu esošo telefona numuru.</p>
+    <div class="hero-badge"><div class="hero-badge-dot"></div><span data-i18n="hero.badge">Baltijas reģionam</span></div>
+    <h1 data-i18n="hero.h1">Jūsu uzņēmums nekad<br>nepalaiž garām<br><em>nevienu zvanu.</em></h1>
+    <p class="hero-sub" data-i18n="hero.sub">AI balss reģistratūra, kas atbild 24/7, runā jūsu valodā, savāc leads un rezervē tikšanās — bez cilvēka iesaistes. Izmantojiet savu esošo numuru.</p>
     <div class="hero-ctas">
-      <button class="btn-primary" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">Skatīt cenas →</button>
-      <button class="btn-secondary" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">Kā tas darbojas</button>
+      <button class="btn-primary" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})" data-i18n="hero.cta1">Skatīt cenas →</button>
+      <button class="btn-secondary" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})" data-i18n="hero.cta2">Kā tas darbojas</button>
     </div>
     <div class="hero-proof">
-      <div class="proof-item"><span class="proof-num">24/7</span><span>Pieejamība</span></div>
+      <div class="proof-item"><span class="proof-num">24/7</span><span data-i18n="proof.availability">Pieejamība</span></div>
       <div class="proof-div"></div>
-      <div class="proof-item"><span class="proof-num">&lt;1s</span><span>Atbildes laiks</span></div>
+      <div class="proof-item"><span class="proof-num">&lt;1s</span><span data-i18n="proof.response">Atbildes laiks</span></div>
       <div class="proof-div"></div>
-      <div class="proof-item"><span class="proof-num">5 val.</span><span>Valodas</span></div>
+      <div class="proof-item"><span class="proof-num">5+</span><span data-i18n="proof.languages">Valodas</span></div>
       <div class="proof-div"></div>
-      <div class="proof-item"><span class="proof-num">GDPR</span><span>Atbilstība</span></div>
+      <div class="proof-item"><span class="proof-num">GDPR</span><span data-i18n="proof.gdpr">Atbilstība</span></div>
+    </div>
+    <div class="hero-countries">
+      <span class="country-tag">🇱🇻 Latvija</span>
+      <span class="country-tag">🇱🇹 Lietuva</span>
+      <span class="country-tag">🇪🇪 Igaunija</span>
     </div>
   </div>
 </section>
 
+<!-- LOGO BAR -->
 <div class="logobar">
-  <span class="logobar-label">Uzticas:</span>
+  <span class="logobar-label" data-i18n="logos.trusted">Uzticas:</span>
   <span class="fake-logo">Meridian Group</span>
   <span class="fake-logo">Baltik Tech</span>
   <span class="fake-logo">Rīga Legal</span>
@@ -318,28 +353,29 @@ footer{background:var(--ink);padding:40px 24px 24px;border-top:1px solid rgba(25
   <span class="fake-logo">Amber Capital</span>
 </div>
 
+<!-- HOW IT WORKS -->
 <section class="how" id="how">
   <div class="how-grid">
     <div>
-      <div class="section-label">Kā tas darbojas</div>
-      <h2 class="section-title">Vienkārši iestatāms.<br><em>Uzreiz strādā.</em></h2>
-      <p class="section-sub" style="margin-bottom:32px">Iestatīšana aizņem mazāk nekā 24 stundas. Jūsu esošais numurs paliek — mēs tikai pievienojam AI.</p>
+      <div class="section-label" data-i18n="how.label">Kā tas darbojas</div>
+      <h2 class="section-title" data-i18n="how.title">Vienkārši iestatāms.<br><em>Uzreiz strādā.</em></h2>
+      <p class="section-sub" style="margin-bottom:32px" data-i18n="how.sub">Iestatīšana aizņem mazāk nekā 24 stundas. Jūsu esošais numurs paliek nemainīts.</p>
       <div class="how-steps">
         <div class="how-step active" onclick="setStep(0)">
           <div class="how-step-num">1</div>
-          <div><div class="how-step-title">Pievienojiet savu esošo numuru</div><div class="how-step-desc">Nav jāmaina numurs. Vienkārši pārsūtiet zvanus uz mūsu sistēmu — klientiem nekas nemainās.</div></div>
+          <div><div class="how-step-title" data-i18n="how.s1t">Pievienojiet savu esošo numuru</div><div class="how-step-desc" data-i18n="how.s1d">Nav jāmaina numurs. Vienkārša pāradresācija — klientiem nekas nemainās.</div></div>
         </div>
         <div class="how-step" onclick="setStep(1)">
           <div class="how-step-num">2</div>
-          <div><div class="how-step-title">Mēs konfigurējam Aria jūsu biznesam</div><div class="how-step-desc">Iestatām uzņēmuma nosaukumu, pakalpojumus, zvanu scenāriju un laikus jūsu kalendārā.</div></div>
+          <div><div class="how-step-title" data-i18n="how.s2t">Mēs konfigurējam Aria jūsu biznesam</div><div class="how-step-desc" data-i18n="how.s2d">Iestatām scenāriju, valodu, Google Calendar un zvanu maršrutēšanu.</div></div>
         </div>
         <div class="how-step" onclick="setStep(2)">
           <div class="how-step-num">3</div>
-          <div><div class="how-step-title">Aria sāk atbildēt uz zvaniem</div><div class="how-step-desc">Katrs zvans tiek saņemts, apstrādāts latviešu valodā un rezervācija nonāk jūsu kalendārā.</div></div>
+          <div><div class="how-step-title" data-i18n="how.s3t">Aria sāk atbildēt uz zvaniem</div><div class="how-step-desc" data-i18n="how.s3d">Katrs zvans apstrādāts jūsu valodā un rezervācija nonāk kalendārā automātiski.</div></div>
         </div>
         <div class="how-step" onclick="setStep(3)">
           <div class="how-step-num">4</div>
-          <div><div class="how-step-title">Leads un analītika reāllaikā</div><div class="how-step-desc">Katrs zvanītājs ir saglabāts — vārds, numurs, vajadzība. Nekad vairs nepalaidiet garām klientu.</div></div>
+          <div><div class="how-step-title" data-i18n="how.s4t">Leads un analītika reāllaikā</div><div class="how-step-desc" data-i18n="how.s4d">Katrs zvanītājs saglabāts — vārds, numurs, vajadzība. Nulles zudums.</div></div>
         </div>
       </div>
     </div>
@@ -348,340 +384,683 @@ footer{background:var(--ink);padding:40px 24px 24px;border-top:1px solid rgba(25
       <div class="phone-mockup">
         <div style="text-align:center;padding:6px 0;">
           <div style="width:38px;height:38px;border-radius:50%;background:rgba(29,158,117,0.2);margin:0 auto 6px;display:flex;align-items:center;justify-content:center;font-size:17px;">📞</div>
-          <div class="phone-caller">Ienākošais zvans</div>
-          <div class="phone-label">Jūsu esošais numurs</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.85);font-weight:500;" data-i18n="mockup.incoming">Ienākošais zvans</div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.4);" data-i18n="mockup.number">Jūsu esošais numurs</div>
         </div>
         <div class="call-wave"><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div></div>
-        <div style="background:rgba(29,158,117,0.15);border-radius:8px;padding:8px;margin-top:2px;">
-          <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-bottom:5px;">Aria atbild:</div>
+        <div style="background:rgba(29,158,117,0.15);border-radius:8px;padding:8px;">
+          <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-bottom:5px;">Aria:</div>
           <div style="height:3px;background:rgba(255,255,255,0.15);border-radius:2px;margin-bottom:4px;width:80%;"></div>
           <div style="height:3px;background:rgba(255,255,255,0.15);border-radius:2px;margin-bottom:4px;width:60%;"></div>
           <div style="height:3px;background:rgba(255,255,255,0.15);border-radius:2px;width:45%;"></div>
         </div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px;">
-          <div style="background:rgba(255,255,255,0.06);border-radius:7px;padding:7px;text-align:center;"><div style="font-size:10px;color:rgba(255,255,255,0.35);">Statuss</div><div style="font-size:11px;color:#1D9E75;font-weight:600;">Aktīvs</div></div>
-          <div style="background:rgba(255,255,255,0.06);border-radius:7px;padding:7px;text-align:center;"><div style="font-size:10px;color:rgba(255,255,255,0.35);">Valoda</div><div style="font-size:11px;color:rgba(255,255,255,0.7);font-weight:600;">LV</div></div>
+          <div style="background:rgba(255,255,255,0.06);border-radius:7px;padding:7px;text-align:center;"><div style="font-size:10px;color:rgba(255,255,255,0.35);" data-i18n="mockup.status">Statuss</div><div style="font-size:11px;color:#1D9E75;font-weight:600;" data-i18n="mockup.active">Aktīvs</div></div>
+          <div style="background:rgba(255,255,255,0.06);border-radius:7px;padding:7px;text-align:center;"><div style="font-size:10px;color:rgba(255,255,255,0.35);" data-i18n="mockup.lang">Valoda</div><div style="font-size:11px;color:rgba(255,255,255,0.7);font-weight:600;" id="mockup-lang-display">LV</div></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- FEATURES -->
 <section class="features" id="features">
   <div class="features-header reveal">
-    <div class="section-label">Iespējas</div>
-    <h2 class="section-title">Viss, kas nepieciešams<br><em>profesionālai reģistratūrai</em></h2>
+    <div class="section-label" data-i18n="feat.label">Iespējas</div>
+    <h2 class="section-title" data-i18n="feat.title">Viss, kas nepieciešams<br><em>profesionālai reģistratūrai</em></h2>
   </div>
   <div class="features-grid">
-    <div class="feat-card reveal"><div class="feat-icon">🎙️</div><div class="feat-title">Dabiska Latviska balss</div><div class="feat-desc">Aria runā latviski ar dabiskām intonācijām — ne kā robots. Klienti bieži neatzīst, ka runā ar AI.</div></div>
-    <div class="feat-card reveal"><div class="feat-icon">📱</div><div class="feat-title">Jūsu esošais numurs</div><div class="feat-desc">Nav jāmaina tālruņa numurs. Vienkārša pāradresācija — viss darbojas caur jūsu pašreizējo numuru.</div></div>
-    <div class="feat-card reveal"><div class="feat-icon">📅</div><div class="feat-title">Automātiska rezervācija</div><div class="feat-desc">Aria rezervē tikšanās tieši jūsu Google Calendar. Klienti saņem apstiprinājumu uzreiz.</div></div>
-    <div class="feat-card reveal"><div class="feat-icon">🎯</div><div class="feat-title">Lead uztveršana</div><div class="feat-desc">Katrs zvanītājs — vārds, tālrunis, vajadzība — saglabāts automātiski. Nulles zudums.</div></div>
-    <div class="feat-card reveal"><div class="feat-icon">🌍</div><div class="feat-title">5 valodas</div><div class="feat-desc">Latviešu, angļu, krievu, vācu un franču valodā. Aria automātiski pārslēdzas pēc klienta valodas.</div></div>
-    <div class="feat-card reveal"><div class="feat-icon">🛡️</div><div class="feat-title">GDPR atbilstība</div><div class="feat-desc">Visi dati glabājas ES serverī. Pilnīga atbilstība Latvijas un Eiropas datu aizsardzības likumiem.</div></div>
+    <div class="feat-card reveal"><div class="feat-icon">🎙️</div><div class="feat-title" data-i18n="feat.1t">Dabiska balss jūsu valodā</div><div class="feat-desc" data-i18n="feat.1d">Aria runā latviski, lietuviski vai igauniski ar dabiskām intonācijām. Klienti bieži neatzīst, ka runā ar AI.</div></div>
+    <div class="feat-card reveal"><div class="feat-icon">📱</div><div class="feat-title" data-i18n="feat.2t">Jūsu esošais numurs</div><div class="feat-desc" data-i18n="feat.2d">Nav jāmaina tālruņa numurs. Vienkārša pāradresācija — viss darbojas caur jūsu pašreizējo numuru.</div></div>
+    <div class="feat-card reveal"><div class="feat-icon">📅</div><div class="feat-title" data-i18n="feat.3t">Automātiska rezervācija</div><div class="feat-desc" data-i18n="feat.3d">Aria rezervē tikšanās tieši jūsu Google Calendar. Klienti saņem apstiprinājumu uzreiz.</div></div>
+    <div class="feat-card reveal"><div class="feat-icon">🎯</div><div class="feat-title" data-i18n="feat.4t">Lead uztveršana</div><div class="feat-desc" data-i18n="feat.4d">Katrs zvanītājs — vārds, tālrunis, vajadzība — saglabāts automātiski. Nulles zudums.</div></div>
+    <div class="feat-card reveal"><div class="feat-icon">🌍</div><div class="feat-title" data-i18n="feat.5t">5+ valodas</div><div class="feat-desc" data-i18n="feat.5d">Latviešu, lietuviešu, igauņu, angļu un krievu valodā. Aria automātiski pārslēdzas pēc klienta valodas.</div></div>
+    <div class="feat-card reveal"><div class="feat-icon">🛡️</div><div class="feat-title" data-i18n="feat.6t">GDPR atbilstība</div><div class="feat-desc" data-i18n="feat.6d">Visi dati glabājas ES serverī. Pilnīga atbilstība Latvijas, Lietuvas, Igaunijas un Eiropas likumiem.</div></div>
   </div>
 </section>
 
-<!-- YOUR NUMBER SECTION -->
-<section class="number-section reveal">
-  <div class="number-inner">
-    <div class="section-label" style="text-align:center">Jūsu numurs</div>
-    <h2 class="section-title" style="text-align:center">Nemainiet savu<br><em>tālruņa numuru</em></h2>
-    <p class="section-sub" style="text-align:center;margin:0 auto 0">Tas ir jūsu biznesa identitāte. Mēs to saglabājam.</p>
-    <div class="number-box">
-      <h3>Vienkārša pāradresācija — 3 soļos</h3>
-      <p>Kad esat prom, nodarbināts vai tas ir nakts — zvani automātiski nonāk pie Aria. Jūsu numurs paliek nemainīts.</p>
-      <div class="number-steps">
-        <div class="num-step"><span class="num-step-n">1</span><div class="num-step-t">Jūs mums dodat numuru</div><div class="num-step-d">Esošais mobilais vai fiksētais numurs</div></div>
-        <div class="num-step"><span class="num-step-n">2</span><div class="num-step-t">Mēs iestatām pāradresāciju</div><div class="num-step-d">Nepieejamiem zvaniem vai visiem zvaniem</div></div>
-        <div class="num-step"><span class="num-step-n">3</span><div class="num-step-t">Aria atbild uzreiz</div><div class="num-step-d">24/7, latviešu valodā, kā jūsu darbinieks</div></div>
+<!-- BALTIC COUNTRIES -->
+<div class="countries reveal">
+  <div class="countries-inner">
+    <h2 data-i18n="countries.title">Pieejams visā <em style="font-style:italic;color:rgba(255,255,255,0.85)">Baltijā</em></h2>
+    <p data-i18n="countries.sub">Viens pakalpojums — trīs valstis — jūsu klientu valodā</p>
+    <div class="countries-grid">
+      <div class="country-card">
+        <div class="country-flag">🇱🇻</div>
+        <div class="country-name">Latvija</div>
+        <div class="country-lang">Latviešu · Angļu · Krievu</div>
+        <div class="country-sample">"Labdien! Kā varu palīdzēt?"</div>
+      </div>
+      <div class="country-card">
+        <div class="country-flag">🇱🇹</div>
+        <div class="country-name">Lietuva</div>
+        <div class="country-lang">Lietuviešu · Angļu · Krievu</div>
+        <div class="country-sample">"Laba diena! Kaip galiu padėti?"</div>
+      </div>
+      <div class="country-card">
+        <div class="country-flag">🇪🇪</div>
+        <div class="country-name">Igaunija</div>
+        <div class="country-lang">Igauņu · Angļu · Krievu</div>
+        <div class="country-sample">"Tere! Kuidas saan aidata?"</div>
       </div>
     </div>
   </div>
-</section>
+</div>
 
+<!-- TESTIMONIALS -->
 <section class="testimonials">
   <div class="testi-header reveal">
-    <div class="section-label">Atsauksmes</div>
-    <h2 class="section-title">Ko saka mūsu <em>klienti</em></h2>
+    <div class="section-label" data-i18n="testi.label">Atsauksmes</div>
+    <h2 class="section-title" data-i18n="testi.title">Ko saka mūsu <em>klienti</em></h2>
   </div>
   <div class="testi-grid">
     <div class="testi-card reveal">
       <div class="testi-stars">★★★★★</div>
       <div class="testi-quote">"Mēs vairs nekad nepalaidām garām nevienu klientu zvanu. Aria atbild pat nakts vidū."</div>
-      <div class="testi-author"><div class="testi-avatar">AM</div><div><div class="testi-name">Andris Meijers</div><div class="testi-role">Direktors, Baltic Auto</div></div></div>
+      <div class="testi-author"><div class="testi-avatar">AM</div><div><div class="testi-name">Andris Meijers</div><div class="testi-role">Direktors, Baltic Auto · Rīga</div></div></div>
     </div>
     <div class="testi-card reveal">
       <div class="testi-stars">★★★★★</div>
-      <div class="testi-quote">"Mūsu esošais numurs palika — klientiem nekas nemainījās. Bet tagad neviens zvans netiek pazaudēts."</div>
-      <div class="testi-author"><div class="testi-avatar">LK</div><div><div class="testi-name">Laila Krūmiņa</div><div class="testi-role">CEO, Rīgas Klīnika</div></div></div>
+      <div class="testi-quote">"Mūsu esošais numurs palika. Aria atbild lietuviski — klienti ir sajūsmināti."</div>
+      <div class="testi-author"><div class="testi-avatar">TK</div><div><div class="testi-name">Tomas Kavaliauskas</div><div class="testi-role">CEO, Vilnius Klinika · Vilnius</div></div></div>
     </div>
     <div class="testi-card reveal">
       <div class="testi-stars">★★★★★</div>
-      <div class="testi-quote">"Latviskā valoda ir nevainojama. Klienti bieži nesaprot, ka runā ar AI."</div>
-      <div class="testi-author"><div class="testi-avatar">JO</div><div><div class="testi-name">Jānis Ozoliņš</div><div class="testi-role">Partneris, Nord Legal</div></div></div>
+      <div class="testi-quote">"Aria räägib eesti keeles täiuslikult. Ükski kõne ei lähe enam kaduma."</div>
+      <div class="testi-author"><div class="testi-avatar">MK</div><div><div class="testi-name">Mari Kask</div><div class="testi-role">Juhataja, Nord Legal · Tallinn</div></div></div>
     </div>
   </div>
 </section>
 
+<!-- STATS -->
 <div class="stats reveal">
   <div class="stats-inner">
-    <div><div class="stat-n">98%</div><div class="stat-l">Zvanu atbildes rādītājs</div></div>
-    <div><div class="stat-n">&lt;1s</div><div class="stat-l">Atbildes laiks</div></div>
-    <div><div class="stat-n">24/7</div><div class="stat-l">Nepārtraukta pieejamība</div></div>
-    <div><div class="stat-n">5x</div><div class="stat-l">Lētāk nekā reāls darbinieks</div></div>
+    <div><div class="stat-n">98%</div><div class="stat-l" data-i18n="stats.1">Zvanu atbildes rādītājs</div></div>
+    <div><div class="stat-n">&lt;1s</div><div class="stat-l" data-i18n="stats.2">Atbildes laiks</div></div>
+    <div><div class="stat-n">3</div><div class="stat-l" data-i18n="stats.3">Baltijas valstis</div></div>
+    <div><div class="stat-n">24/7</div><div class="stat-l" data-i18n="stats.4">Nepārtraukta darbība</div></div>
   </div>
 </div>
 
+<!-- PRICING -->
 <section class="pricing" id="pricing">
   <div class="pricing-header reveal">
-    <div class="section-label">Cenas</div>
-    <h2 class="section-title">Izvēlieties savam<br><em>uzņēmumam piemērotāko</em></h2>
-    <p class="section-sub" style="margin:0 auto;text-align:center">Bez slēptām maksām. Atceliet jebkurā laikā. Jūsu numurs paliek.</p>
+    <div class="section-label" data-i18n="pricing.label">Cenas</div>
+    <h2 class="section-title" data-i18n="pricing.title">Izvēlieties savam<br><em>uzņēmumam piemērotāko</em></h2>
+    <p class="section-sub" style="margin:0 auto;text-align:center" data-i18n="pricing.sub">Bez slēptām maksām. Jūsu numurs paliek. Atceliet jebkurā laikā.</p>
   </div>
-
   <div class="plans-grid reveal">
 
     <!-- STARTER -->
     <div class="plan">
       <div class="plan-tier">Starter</div>
-      <div class="plan-tagline">"Nekad vairs nepalaid garām zvanu"</div>
-      <div class="plan-setup">Iestatīšana: <strong>€797</strong> (vienreiz)</div>
+      <div class="plan-tagline" data-i18n="plan.s.tagline">"Nekad vairs nepalaid garām zvanu"</div>
+      <div class="plan-setup" data-i18n="plan.s.setup">Iestatīšana: <strong>€797</strong> (vienreiz)</div>
       <div class="plan-amount"><sup>€</sup>997</div>
-      <div class="plan-period">/mēnesī</div>
-      <div class="plan-desc">Ideāli maziem uzņēmumiem — zobārstniecībām, advokātiem, auto servisiem — kas vēlas automātiski atbildēt uz katru zvanu.</div>
+      <div class="plan-period" data-i18n="plan.monthly">/mēnesī</div>
+      <div class="plan-desc" data-i18n="plan.s.desc">Ideāli maziem uzņēmumiem — zobārstniecībām, advokātiem, auto servisiem — kas vēlas automātiski atbildēt uz katru zvanu.</div>
       <ul class="plan-features">
-        <li><span class="ck">✓</span>Aria atbild uz jūsu esošo numuru 24/7</li>
-        <li><span class="ck">✓</span>Latviešu + angļu + krievu valoda</li>
-        <li><span class="ck">✓</span>Lead uztveršana (vārds, numurs, vajadzība)</li>
-        <li><span class="ck">✓</span>Google Calendar integrācija</li>
-        <li><span class="ck">✓</span>E-pasta paziņojumi katram leadam</li>
-        <li><span class="ck">✓</span>500 minūtes iekļautas</li>
-        <li><span class="ck">✓</span>Iestatīšana 24 stundu laikā</li>
-        <li><span class="ck no">✗</span><span style="opacity:0.45">Pielāgots scenārijs</span></li>
-        <li><span class="ck no">✗</span><span style="opacity:0.45">CRM integrācija</span></li>
+        <li><span class="ck">✓</span><span data-i18n="plan.s.f1">Aria atbild uz jūsu esošo numuru 24/7</span></li>
+        <li><span class="ck">✓</span><span data-i18n="plan.s.f2">Latviešu + angļu + krievu valoda</span></li>
+        <li><span class="ck">✓</span><span data-i18n="plan.s.f3">Lead uztveršana automātiski</span></li>
+        <li><span class="ck">✓</span><span data-i18n="plan.s.f4">Google Calendar integrācija</span></li>
+        <li><span class="ck">✓</span><span data-i18n="plan.s.f5">E-pasta paziņojumi katram leadam</span></li>
+        <li><span class="ck">✓</span><span data-i18n="plan.s.f6">500 minūtes iekļautas</span></li>
+        <li><span class="ck">✓</span><span data-i18n="plan.s.f7">Iestatīšana 24 stundu laikā</span></li>
+        <li><span class="ck no">✗</span><span style="opacity:0.45" data-i18n="plan.s.f8">Pielāgots scenārijs</span></li>
+        <li><span class="ck no">✗</span><span style="opacity:0.45" data-i18n="plan.s.f9">CRM integrācija</span></li>
       </ul>
-      <button class="plan-btn dark" onclick="startCheckout('starter')">Sākt ar Starter →</button>
-      <div class="plan-note">€797 iestatīšana + €997/mēn.</div>
+      <a href="https://buy.stripe.com/test_dRm28s6wcb9p5z01H42Ji00" class="plan-btn dark" id="starter-btn" data-i18n="plan.s.btn" target="_blank">Sākt ar Starter →</a>
+      <div class="plan-note">€797 + €997/mēn.</div>
     </div>
 
     <!-- GROWTH -->
     <div class="plan featured">
-      <div class="plan-badge green">⭐ POPULĀRĀKAIS</div>
+      <div class="plan-badge badge-green">⭐ POPULĀRĀKAIS</div>
       <div class="plan-tier">Growth</div>
-      <div class="plan-tagline">"Jūsu pilna laika AI reģistratūra"</div>
-      <div class="plan-setup" style="opacity:0.7">Iestatīšana: <strong>€1,500</strong> (vienreiz)</div>
+      <div class="plan-tagline" data-i18n="plan.g.tagline">"Jūsu pilna laika AI reģistratūra"</div>
+      <div class="plan-setup" style="opacity:0.75" data-i18n="plan.g.setup">Iestatīšana: <strong>€1,500</strong> (vienreiz)</div>
       <div class="plan-amount"><sup>€</sup>1,497</div>
-      <div class="plan-period">/mēnesī</div>
-      <div class="plan-desc">Augošiem uzņēmumiem, kas vēlas pilnu AI reģistratūru ar CRM, analītiku un pielāgotu scenāriju.</div>
+      <div class="plan-period" data-i18n="plan.monthly">/mēnesī</div>
+      <div class="plan-desc" data-i18n="plan.g.desc">Augošiem uzņēmumiem, kas vēlas pilnu AI reģistratūru ar CRM, analītiku un pielāgotu scenāriju.</div>
       <ul class="plan-features">
-        <li><span class="ck">✓</span>Viss no Starter</li>
-        <li><span class="ck">✓</span>5 valodas (LV, EN, RU, DE, FR)</li>
-        <li><span class="ck">✓</span>Pielāgots zvanu scenārijs jūsu biznesam</li>
-        <li><span class="ck">✓</span>CRM integrācija (HubSpot / Pipedrive)</li>
-        <li><span class="ck">✓</span>SMS paziņojumi jums par katru leadam</li>
-        <li><span class="ck">✓</span>Reāllaika leads analītika</li>
-        <li><span class="ck">✓</span>1,500 minūtes iekļautas</li>
-        <li><span class="ck">✓</span>Zvanu ieraksti un transkripcijas</li>
-        <li><span class="ck">✓</span>Prioritārs atbalsts 24/7</li>
+        <li><span class="ck">✓</span><span data-i18n="plan.g.f1">Viss no Starter</span></li>
+        <li><span class="ck">✓</span><span data-i18n="plan.g.f2">5+ valodas (LV, LT, ET, EN, RU, DE)</span></li>
+        <li><span class="ck">✓</span><span data-i18n="plan.g.f3">Pielāgots zvanu scenārijs</span></li>
+        <li><span class="ck">✓</span><span data-i18n="plan.g.f4">CRM integrācija (HubSpot / Pipedrive)</span></li>
+        <li><span class="ck">✓</span><span data-i18n="plan.g.f5">SMS paziņojumi par katru leadu</span></li>
+        <li><span class="ck">✓</span><span data-i18n="plan.g.f6">Reāllaika leads analītika</span></li>
+        <li><span class="ck">✓</span><span data-i18n="plan.g.f7">1,500 minūtes iekļautas</span></li>
+        <li><span class="ck">✓</span><span data-i18n="plan.g.f8">Zvanu ieraksti un transkripcijas</span></li>
+        <li><span class="ck">✓</span><span data-i18n="plan.g.f9">Prioritārs atbalsts 24/7</span></li>
       </ul>
-      <button class="plan-btn light" onclick="startCheckout('growth')">Sākt ar Growth →</button>
-      <div class="plan-note" style="color:rgba(255,255,255,0.5)">€1,500 iestatīšana + €1,497/mēn.</div>
+      <a href="https://buy.stripe.com/test_7sYdRa4o4cdt9PgdpM2Ji01" class="plan-btn light" id="growth-btn" data-i18n="plan.g.btn" target="_blank">Sākt ar Growth →</a>
+      <div class="plan-note" style="color:rgba(255,255,255,0.5)">€1,500 + €1,497/mēn.</div>
     </div>
 
     <!-- ELITE -->
     <div class="plan elite">
-      <div class="plan-badge elite">👑 ELITE</div>
+      <div class="plan-badge badge-elite">👑 ELITE</div>
       <div class="plan-tier">Elite Package</div>
-      <div class="plan-tagline">"Pilnīga digitālā klātbūtne"</div>
-      <div class="plan-setup">Iestatīšana: <strong style="color:var(--gold)">€3,997</strong> (vienreiz)</div>
+      <div class="plan-tagline" data-i18n="plan.e.tagline">"Pilnīga digitālā klātbūtne"</div>
+      <div class="plan-setup" data-i18n="plan.e.setup">Iestatīšana: <strong style="color:var(--gold)">€3,997</strong> (vienreiz)</div>
       <div class="plan-amount" style="color:var(--gold)"><sup>€</sup>797</div>
-      <div class="plan-period">/mēnesī pēc tam</div>
-      <div class="plan-desc">Mēs izveidojam jūsu uzņēmuma mājaslapu ar Aria jau iekļautu — pilns digitālais risinājums no nulles.</div>
+      <div class="plan-period" data-i18n="plan.e.period">/mēnesī pēc tam</div>
+      <div class="plan-desc" data-i18n="plan.e.desc">Mēs izveidojam jūsu uzņēmuma mājaslapu ar Aria jau iekļautu — pilns digitālais risinājums no nulles.</div>
       <ul class="plan-features">
-        <li><span class="ck">✓</span>Viss no Growth</li>
-        <li><span class="ck">✓</span>Pielāgota mājaslapa jūsu biznesam</li>
-        <li><span class="ck">✓</span>Aria numurs iebūvēts mājaslapā</li>
-        <li><span class="ck">✓</span>Klientu portāls ar leads un analītiku</li>
-        <li><span class="ck">✓</span>Domēna vārds + hosting iekļauts</li>
-        <li><span class="ck">✓</span>Neierobežotas minūtes</li>
-        <li><span class="ck">✓</span>Automātisks SMS katram zvanītājam</li>
-        <li><span class="ck">✓</span>Dediķēts konta menedžeris</li>
-        <li><span class="ck">✓</span>Mājaslapa gatava 48 stundu laikā</li>
-        <li><span class="ck">✓</span>Bezmaksas izmaiņas pirmajā mēnesī</li>
+        <li><span class="ck">✓</span><span data-i18n="plan.e.f1">Viss no Growth</span></li>
+        <li><span class="ck">✓</span><span data-i18n="plan.e.f2">Pielāgota mājaslapa jūsu biznesam</span></li>
+        <li><span class="ck">✓</span><span data-i18n="plan.e.f3">Aria numurs iebūvēts mājaslapā</span></li>
+        <li><span class="ck">✓</span><span data-i18n="plan.e.f4">Klientu portāls ar leads un analītiku</span></li>
+        <li><span class="ck">✓</span><span data-i18n="plan.e.f5">Domēna vārds + hosting iekļauts</span></li>
+        <li><span class="ck">✓</span><span data-i18n="plan.e.f6">Neierobežotas minūtes</span></li>
+        <li><span class="ck">✓</span><span data-i18n="plan.e.f7">Dediķēts konta menedžeris</span></li>
+        <li><span class="ck">✓</span><span data-i18n="plan.e.f8">Mājaslapa gatava 48 stundu laikā</span></li>
+        <li><span class="ck">✓</span><span data-i18n="plan.e.f9">Bezmaksas izmaiņas pirmajā mēnesī</span></li>
       </ul>
-      <button class="plan-btn gold" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Pieteikties Elite →</button>
-      <div class="plan-note">€3,997 iestatīšana · pēc tam tikai €797/mēn.</div>
+      <button class="plan-btn gold-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" data-i18n="plan.e.btn">Pieteikties Elite →</button>
+      <div class="plan-note" data-i18n="plan.e.note">€3,997 iestatīšana · tad €797/mēn.</div>
     </div>
-
   </div>
 
   <div class="secure-bar reveal">
     <span style="font-size:22px">🔒</span>
-    <p><strong>Droša maksājumu apstrāde ar Stripe.</strong> Starter un Growth — tūlītēja aktivācija. Elite Package — mēs sazināsimies 24h laikā ar detaļām.</p>
+    <p><strong data-i18n="secure.title">Droša maksājumu apstrāde ar Stripe.</strong> <span data-i18n="secure.desc">Starter un Growth — tūlītēja aktivācija. Elite Package — mēs sazināsimies 24h laikā.</span></p>
   </div>
 </section>
 
+<!-- FAQ -->
 <section class="faq" id="faq">
   <div class="faq-inner">
     <div class="faq-header reveal">
-      <div class="section-label">Jautājumi</div>
-      <h2 class="section-title">Biežāk uzdotie <em>jautājumi</em></h2>
+      <div class="section-label" data-i18n="faq.label">Jautājumi</div>
+      <h2 class="section-title" data-i18n="faq.title">Biežāk uzdotie <em>jautājumi</em></h2>
     </div>
-    <div class="faq-item"><button class="faq-q" onclick="tfaq(0)">Vai man jāmaina savs tālruņa numurs?<span class="faq-icon" id="fi0">+</span></button><div class="faq-a" id="fa0">Nē — tas ir viens no mūsu lielākajiem ieguvumiem. Jūsu esošais numurs paliek. Mēs vienkārši iestatām zvanu pāradresāciju, kad esat nepieejams. Klientiem nekas nemainās — viņi zvana uz to pašu numuru kā vienmēr.</div></div>
-    <div class="faq-item"><button class="faq-q" onclick="tfaq(1)">Cik ilgs laiks nepieciešams iestatīšanai?<span class="faq-icon" id="fi1">+</span></button><div class="faq-a" id="fa1">Starter un Growth — sistēma gatava 24 stundu laikā. Elite Package ar mājaslapu — 48 stundu laikā. Mūsu komanda palīdz ar visu no sākuma līdz beigām.</div></div>
-    <div class="faq-item"><button class="faq-q" onclick="tfaq(2)">Vai AI tiešām runā latviski dabiski?<span class="faq-icon" id="fi2">+</span></button><div class="faq-a" id="fa2">Jā — Aria izmanto ElevenLabs jaunāko balss tehnoloģiju ar īpaši apmācītu latviešu valodas modeli. Klienti bieži nesaprot, ka runā ar AI. Aria arī automātiski pārslēdzas uz krievu vai angļu valodu pēc klienta vajadzības.</div></div>
-    <div class="faq-item"><button class="faq-q" onclick="tfaq(3)">Ko nozīmē iestatīšanas maksa?<span class="faq-icon" id="fi3">+</span></button><div class="faq-a" id="fa3">Iestatīšanas maksa sedz visu sākotnējo darbu — Aria konfigurāciju jūsu biznesam, zvanu scenārija izstrādi, Google Calendar integrāciju, testēšanu un apmācību. Pēc iestatīšanas mēneša maksa sedz tikai Aria darbību un atbalstu.</div></div>
-    <div class="faq-item"><button class="faq-q" onclick="tfaq(4)">Vai tas atbilst GDPR prasībām?<span class="faq-icon" id="fi4">+</span></button><div class="faq-a" id="fa4">Pilnīgi. Visi dati tiek apstrādāti un glabāti ES serverī. Piedāvājam datu apstrādes līgumu (DPA), un Elite klientiem nodrošinām datu rezidenci Latvijā.</div></div>
-    <div class="faq-item"><button class="faq-q" onclick="tfaq(5)">Vai varu atcelt jebkurā laikā?<span class="faq-icon" id="fi5">+</span></button><div class="faq-a" id="fa5">Jā. Nav ilgtermiņa saistību mēneša abonementam. Atceļot, pakalpojums turpinās līdz norēķinu perioda beigām. Iestatīšanas maksa netiek atmaksāta, jo darbs jau ir paveikts.</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="tfaq(0)"><span data-i18n="faq.1q">Vai man jāmaina savs tālruņa numurs?</span><span class="faq-icon" id="fi0">+</span></button><div class="faq-a" id="fa0" data-i18n="faq.1a">Nē. Jūsu esošais numurs paliek nemainīts. Mēs iestatām zvanu pāradresāciju uz Aria. Klientiem nekas nemainās — viņi zvana uz to pašu numuru kā vienmēr.</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="tfaq(1)"><span data-i18n="faq.2q">Cik ilgs laiks nepieciešams iestatīšanai?</span><span class="faq-icon" id="fi1">+</span></button><div class="faq-a" id="fa1" data-i18n="faq.2a">Starter un Growth — 24 stundu laikā. Elite Package ar mājaslapu — 48 stundu laikā. Mūsu komanda palīdz ar visu.</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="tfaq(2)"><span data-i18n="faq.3q">Vai Aria tiešām runā latviski, lietuviski un igauniski?</span><span class="faq-icon" id="fi2">+</span></button><div class="faq-a" id="fa2" data-i18n="faq.3a">Jā — Aria izmanto ElevenLabs jaunāko balss tehnoloģiju ar apmācītiem modeļiem visām trim Baltijas valodām. Aria automātiski pārslēdzas uz klienta valodu.</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="tfaq(3)"><span data-i18n="faq.4q">Ko nozīmē iestatīšanas maksa?</span><span class="faq-icon" id="fi3">+</span></button><div class="faq-a" id="fa3" data-i18n="faq.4a">Iestatīšanas maksa sedz sākotnējo darbu — Aria konfigurāciju, zvanu scenārija izstrādi, Calendar integrāciju un testēšanu. Pēc tam mēneša maksa sedz tikai Aria darbību.</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="tfaq(4)"><span data-i18n="faq.5q">Vai tas atbilst GDPR prasībām?</span><span class="faq-icon" id="fi4">+</span></button><div class="faq-a" id="fa4" data-i18n="faq.5a">Pilnīgi. Visi dati glabājas ES serverī. Atbilst Latvijas, Lietuvas un Igaunijas datu aizsardzības prasībām.</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="tfaq(5)"><span data-i18n="faq.6q">Vai varu atcelt jebkurā laikā?</span><span class="faq-icon" id="fi5">+</span></button><div class="faq-a" id="fa5" data-i18n="faq.6a">Jā. Nav ilgtermiņa saistību mēneša abonementam. Atceļot, pakalpojums turpinās līdz norēķinu perioda beigām.</div></div>
   </div>
 </section>
 
+<!-- CONTACT -->
 <section class="contact" id="contact">
   <div class="contact-inner reveal">
     <div class="contact-header">
-      <div class="section-label">Sazināties</div>
-      <h2 class="section-title">Sāciet <em>šodien</em></h2>
-      <p class="section-sub" style="text-align:center;margin:0 auto">Aizpildiet veidlapu un mēs sazināsimies 24 stundu laikā.</p>
+      <div class="section-label" data-i18n="contact.label">Sazināties</div>
+      <h2 class="section-title" data-i18n="contact.title">Sāciet <em>šodien</em></h2>
+      <p class="section-sub" style="text-align:center;margin:0 auto" data-i18n="contact.sub">Aizpildiet veidlapu un mēs sazināsimies 24 stundu laikā.</p>
     </div>
     <form id="contact-form" onsubmit="submitForm(event)" action="https://formspree.io/f/xeerlbwr" method="POST">
       <div class="form-grid">
-        <div class="form-group"><label>Vārds, Uzvārds *</label><input type="text" name="vards" placeholder="Jānis Bērziņš" required/></div>
-        <div class="form-group"><label>Uzņēmums *</label><input type="text" name="uznemums" placeholder="SIA Jūsu Uzņēmums" required/></div>
-        <div class="form-group"><label>E-pasts *</label><input type="email" name="email" placeholder="janis@uznemums.lv" required/></div>
-        <div class="form-group"><label>Tālrunis</label><input type="tel" name="talrunis" placeholder="+371 2X XXX XXX"/></div>
-        <div class="form-group"><label>Interesējošais plāns</label>
+        <div class="form-group"><label data-i18n="form.name">Vārds, Uzvārds *</label><input type="text" name="vards" placeholder="Jānis Bērziņš" required/></div>
+        <div class="form-group"><label data-i18n="form.company">Uzņēmums *</label><input type="text" name="uznemums" placeholder="SIA Jūsu Uzņēmums" required/></div>
+        <div class="form-group"><label data-i18n="form.email">E-pasts *</label><input type="email" name="email" placeholder="janis@uznemums.lv" required/></div>
+        <div class="form-group"><label data-i18n="form.phone">Tālrunis</label><input type="tel" name="talrunis" placeholder="+371 2X XXX XXX"/></div>
+        <div class="form-group"><label data-i18n="form.country">Valsts</label>
+          <select name="valsts">
+            <option>🇱🇻 Latvija</option>
+            <option>🇱🇹 Lietuva</option>
+            <option>🇪🇪 Igaunija</option>
+          </select>
+        </div>
+        <div class="form-group"><label data-i18n="form.plan">Plāns</label>
           <select name="plans">
-            <option>Starter — €797 iestatīšana + €997/mēn.</option>
-            <option>Growth — €1,500 iestatīšana + €1,497/mēn.</option>
-            <option selected>Elite Package — €3,997 iestatīšana + €797/mēn.</option>
-            <option>Nav pārliecināts</option>
+            <option>Starter — €797 + €997/mēn.</option>
+            <option>Growth — €1,500 + €1,497/mēn.</option>
+            <option selected>Elite — €3,997 + €797/mēn.</option>
+            <option data-i18n="form.unsure">Nav pārliecināts</option>
           </select>
         </div>
-        <div class="form-group"><label>Zvani mēnesī</label>
-          <select name="zvani">
-            <option>Mazāk par 100</option>
-            <option>100–500</option>
-            <option>500–2000</option>
-            <option>Vairāk par 2000</option>
-          </select>
-        </div>
-        <div class="form-group full"><label>Jūsu esošais tālruņa numurs</label><input type="tel" name="existing_number" placeholder="+371 2X XXX XXX (ko pievienosim Aria)"/></div>
-        <div class="form-group full"><label>Papildus informācija</label><textarea name="zinojums" placeholder="Pastāstiet par savu uzņēmumu un vajadzībām..."></textarea></div>
-        <div class="form-group full"><button type="submit" class="form-submit">Nosūtīt pieteikumu →</button></div>
+        <div class="form-group full"><label data-i18n="form.existing">Jūsu esošais tālruņa numurs</label><input type="tel" name="existing_number" placeholder="+371 2X XXX XXX"/></div>
+        <div class="form-group full"><label data-i18n="form.message">Papildus informācija</label><textarea name="zinojums" placeholder="Pastāstiet par savu uzņēmumu..."></textarea></div>
+        <div class="form-group full"><button type="submit" class="form-submit" data-i18n="form.submit">Nosūtīt pieteikumu →</button></div>
       </div>
     </form>
-    <div class="success-msg" id="success-msg">✓ Paldies! Mēs sazināsimies ar jums 24 stundu laikā.</div>
-    <div class="form-note">Jūsu dati ir drošībā. Mēs nenosūtām surogātpastu.</div>
+    <div class="success-msg" id="success-msg" data-i18n="form.success">✓ Paldies! Mēs sazināsimies ar jums 24 stundu laikā.</div>
+    <div class="form-note" data-i18n="form.note">Jūsu dati ir drošībā. Mēs nenosūtām surogātpastu.</div>
   </div>
 </section>
 
+<!-- CTA -->
 <div class="cta-bottom">
   <div class="cta-bottom-bg"></div>
-  <h2>Gatavs pārveidot<br>sava uzņēmuma <em>reģistratūru?</em></h2>
-  <p>Pievienojieties uzņēmumiem, kas jau izmanto AI. Jūsu numurs paliek — mēs pievienojam tikai inteliģenci.</p>
-  <div class="cta-bottom-btns">
-    <button class="btn-white" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">Skatīt cenas →</button>
-    <button class="btn-ghost" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Sazināties</button>
+  <h2 data-i18n="cta.title">Gatavs pārveidot<br>sava uzņēmuma <em>reģistratūru?</em></h2>
+  <p data-i18n="cta.sub">Pievienojieties Baltijas uzņēmumiem, kas jau izmanto AI. Jūsu numurs paliek — mēs pievienojam tikai inteliģenci.</p>
+  <div class="cta-btns">
+    <button class="btn-white" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})" data-i18n="cta.btn1">Skatīt cenas →</button>
+    <button class="btn-ghost" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" data-i18n="cta.btn2">Sazināties</button>
   </div>
 </div>
 
+<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
     <div class="footer-top">
       <div class="footer-brand">
-        <div class="footer-logo"><div style="width:8px;height:8px;border-radius:50%;background:#1D9E75;flex-shrink:0;"></div>Elite Call Reception</div>
-        <div class="footer-tagline">AI balss reģistratūra Latvijas uzņēmumiem. Jūsu numurs paliek — mēs pievienojam AI.</div>
+        <div class="footer-logo">
+          <div class="footer-logo-mark">
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M10 2C7.8 2 6 3.8 6 6c0 1.5.8 2.8 2 3.5V11l-2 2h8l-2-2V9.5c1.2-.7 2-2 2-3.5 0-2.2-1.8-4-4-4z" fill="white" opacity="0.9"/><rect x="7" y="13" width="6" height="1.5" rx="0.75" fill="white" opacity="0.7"/><rect x="8" y="15" width="4" height="1.5" rx="0.75" fill="white" opacity="0.5"/></svg>
+          </div>
+          Elite Call Reception
+        </div>
+        <div class="footer-tagline" data-i18n="footer.tagline">AI balss reģistratūra Baltijas uzņēmumiem. Latvija · Lietuva · Igaunija.</div>
+        <div class="footer-flags">🇱🇻 🇱🇹 🇪🇪</div>
       </div>
-      <div class="footer-col"><h4>Produkts</h4><a href="#how">Kā tas darbojas</a><a href="#features">Iespējas</a><a href="#pricing">Cenas</a><a href="#faq">BUJ</a></div>
-      <div class="footer-col"><h4>Uzņēmums</h4><a href="#">Par mums</a><a href="#">Blogs</a><a href="#contact">Kontakti</a></div>
-      <div class="footer-col"><h4>Juridisks</h4><a href="#">Privātuma politika</a><a href="#">Lietošanas noteikumi</a><a href="#">GDPR</a></div>
+      <div class="footer-col"><h4 data-i18n="footer.product">Produkts</h4><a href="#how" data-i18n="nav.how">Kā tas darbojas</a><a href="#features" data-i18n="nav.features">Iespējas</a><a href="#pricing" data-i18n="nav.pricing">Cenas</a><a href="#faq" data-i18n="nav.faq">BUJ</a></div>
+      <div class="footer-col"><h4 data-i18n="footer.company">Uzņēmums</h4><a href="#" data-i18n="footer.about">Par mums</a><a href="#" data-i18n="footer.blog">Blogs</a><a href="#contact" data-i18n="nav.contact">Kontakti</a></div>
+      <div class="footer-col"><h4 data-i18n="footer.legal">Juridisks</h4><a href="#" data-i18n="footer.privacy">Privātuma politika</a><a href="#" data-i18n="footer.terms">Lietošanas noteikumi</a><a href="#">GDPR</a></div>
     </div>
     <div class="footer-bottom">
       <span>© 2025 Elite Call Reception. Visas tiesības aizsargātas.</span>
-      <span>Rīga, Latvija · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7b12151d143b1e17120f1e181a1717091e181e0b0f12141555181416">[email&#160;protected]</a></span>
+      <span>Rīga, Latvija · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c4adaaa2ab84a1a8adb0a1a7a5a8a8b6a1a7a1b4b0adabaaeaa7aba9">[email&#160;protected]</a></span>
     </div>
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// Nav
-window.addEventListener('scroll',()=>{document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>20);});
-function toggleMenu(){document.getElementById('mobile-menu').classList.toggle('open');}
-function closeMenu(){document.getElementById('mobile-menu').classList.remove('open');}
-document.addEventListener('click',(e)=>{const menu=document.getElementById('mobile-menu');const btn=document.querySelector('.nav-mobile-btn');if(!menu.contains(e.target)&&!btn.contains(e.target)){menu.classList.remove('open');}});
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://js.stripe.com/v3/"></script>
+<script>
+// ═══════════════════════════════════════
+// TRANSLATIONS
+// ═══════════════════════════════════════
+const TRANSLATIONS = {
+  lv: {
+    'nav.how':'Kā tas darbojas','nav.features':'Iespējas','nav.pricing':'Cenas','nav.faq':'BUJ','nav.contact':'Kontakti','nav.cta':'Skatīt cenas',
+    'hero.badge':'🇱🇻 Baltijas reģionam','hero.h1':'Jūsu uzņēmums nekad<br>nepalaiž garām<br><em>nevienu zvanu.</em>',
+    'hero.sub':'AI balss reģistratūra, kas atbild 24/7, runā jūsu valodā, savāc leads un rezervē tikšanās — bez cilvēka iesaistes. Izmantojiet savu esošo numuru.',
+    'hero.cta1':'Skatīt cenas →','hero.cta2':'Kā tas darbojas',
+    'proof.availability':'Pieejamība','proof.response':'Atbildes laiks','proof.languages':'Valodas','proof.gdpr':'Atbilstība',
+    'logos.trusted':'Uzticas:','how.label':'Kā tas darbojas','how.title':'Vienkārši iestatāms.<br><em>Uzreiz strādā.</em>',
+    'how.sub':'Iestatīšana aizņem mazāk nekā 24 stundas. Jūsu esošais numurs paliek nemainīts.',
+    'how.s1t':'Pievienojiet savu esošo numuru','how.s1d':'Nav jāmaina numurs. Vienkārša pāradresācija — klientiem nekas nemainās.',
+    'how.s2t':'Mēs konfigurējam Aria jūsu biznesam','how.s2d':'Iestatām scenāriju, valodu, Google Calendar un zvanu maršrutēšanu.',
+    'how.s3t':'Aria sāk atbildēt uz zvaniem','how.s3d':'Katrs zvans apstrādāts jūsu valodā un rezervācija nonāk kalendārā automātiski.',
+    'how.s4t':'Leads un analītika reāllaikā','how.s4d':'Katrs zvanītājs saglabāts — vārds, numurs, vajadzība. Nulles zudums.',
+    'mockup.incoming':'Ienākošais zvans','mockup.number':'Jūsu esošais numurs','mockup.status':'Statuss','mockup.active':'Aktīvs','mockup.lang':'Valoda',
+    'feat.label':'Iespējas','feat.title':'Viss, kas nepieciešams<br><em>profesionālai reģistratūrai</em>',
+    'feat.1t':'Dabiska balss jūsu valodā','feat.1d':'Aria runā latviski, lietuviski vai igauniski ar dabiskām intonācijām. Klienti bieži neatzīst, ka runā ar AI.',
+    'feat.2t':'Jūsu esošais numurs','feat.2d':'Nav jāmaina tālruņa numurs. Vienkārša pāradresācija — viss darbojas caur jūsu pašreizējo numuru.',
+    'feat.3t':'Automātiska rezervācija','feat.3d':'Aria rezervē tikšanās tieši jūsu Google Calendar. Klienti saņem apstiprinājumu uzreiz.',
+    'feat.4t':'Lead uztveršana','feat.4d':'Katrs zvanītājs — vārds, tālrunis, vajadzība — saglabāts automātiski. Nulles zudums.',
+    'feat.5t':'5+ valodas','feat.5d':'Latviešu, lietuviešu, igauņu, angļu un krievu valodā. Aria automātiski pārslēdzas pēc klienta valodas.',
+    'feat.6t':'GDPR atbilstība','feat.6d':'Visi dati glabājas ES serverī. Pilnīga atbilstība Latvijas, Lietuvas, Igaunijas un Eiropas likumiem.',
+    'countries.title':'Pieejams visā Baltijā','countries.sub':'Viens pakalpojums — trīs valstis — jūsu klientu valodā',
+    'testi.label':'Atsauksmes','testi.title':'Ko saka mūsu <em>klienti</em>',
+    'stats.1':'Zvanu atbildes rādītājs','stats.2':'Atbildes laiks','stats.3':'Baltijas valstis','stats.4':'Nepārtraukta darbība',
+    'pricing.label':'Cenas','pricing.title':'Izvēlieties savam<br><em>uzņēmumam piemērotāko</em>','pricing.sub':'Bez slēptām maksām. Jūsu numurs paliek. Atceliet jebkurā laikā.',
+    'plan.monthly':'/mēnesī','plan.s.tagline':'"Nekad vairs nepalaid garām zvanu"','plan.s.setup':'Iestatīšana: <strong>€797</strong> (vienreiz)',
+    'plan.s.desc':'Ideāli maziem uzņēmumiem — zobārstniecībām, advokātiem, auto servisiem.','plan.s.f1':'Aria atbild uz jūsu esošo numuru 24/7',
+    'plan.s.f2':'Latviešu + angļu + krievu valoda','plan.s.f3':'Lead uztveršana automātiski','plan.s.f4':'Google Calendar integrācija',
+    'plan.s.f5':'E-pasta paziņojumi katram leadam','plan.s.f6':'500 minūtes iekļautas','plan.s.f7':'Iestatīšana 24 stundu laikā',
+    'plan.s.f8':'Pielāgots scenārijs','plan.s.f9':'CRM integrācija','plan.s.btn':'Sākt ar Starter →',
+    'plan.g.tagline':'"Jūsu pilna laika AI reģistratūra"','plan.g.setup':'Iestatīšana: <strong>€1,500</strong> (vienreiz)',
+    'plan.g.desc':'Augošiem uzņēmumiem ar CRM, analītiku un pielāgotu scenāriju.','plan.g.f1':'Viss no Starter',
+    'plan.g.f2':'5+ valodas (LV, LT, ET, EN, RU, DE)','plan.g.f3':'Pielāgots zvanu scenārijs','plan.g.f4':'CRM integrācija (HubSpot / Pipedrive)',
+    'plan.g.f5':'SMS paziņojumi par katru leadu','plan.g.f6':'Reāllaika leads analītika','plan.g.f7':'1,500 minūtes iekļautas',
+    'plan.g.f8':'Zvanu ieraksti un transkripcijas','plan.g.f9':'Prioritārs atbalsts 24/7','plan.g.btn':'Sākt ar Growth →',
+    'plan.e.tagline':'"Pilnīga digitālā klātbūtne"','plan.e.setup':'Iestatīšana: <strong style="color:var(--gold)">€3,997</strong> (vienreiz)',
+    'plan.e.period':'/mēnesī pēc tam','plan.e.desc':'Mēs izveidojam jūsu uzņēmuma mājaslapu ar Aria jau iekļautu.',
+    'plan.e.f1':'Viss no Growth','plan.e.f2':'Pielāgota mājaslapa jūsu biznesam','plan.e.f3':'Aria numurs iebūvēts mājaslapā',
+    'plan.e.f4':'Klientu portāls ar leads un analītiku','plan.e.f5':'Domēna vārds + hosting iekļauts','plan.e.f6':'Neierobežotas minūtes',
+    'plan.e.f7':'Dediķēts konta menedžeris','plan.e.f8':'Mājaslapa gatava 48 stundu laikā','plan.e.f9':'Bezmaksas izmaiņas pirmajā mēnesī',
+    'plan.e.btn':'Pieteikties Elite →','plan.e.note':'€3,997 iestatīšana · tad €797/mēn.',
+    'secure.title':'Droša maksājumu apstrāde ar Stripe.','secure.desc':'Starter un Growth — tūlītēja aktivācija. Elite — mēs sazināsimies 24h laikā.',
+    'faq.label':'Jautājumi','faq.title':'Biežāk uzdotie <em>jautājumi</em>',
+    'faq.1q':'Vai man jāmaina savs tālruņa numurs?','faq.1a':'Nē. Jūsu esošais numurs paliek nemainīts. Mēs iestatām zvanu pāradresāciju uz Aria. Klientiem nekas nemainās.',
+    'faq.2q':'Cik ilgs laiks nepieciešams iestatīšanai?','faq.2a':'Starter un Growth — 24 stundu laikā. Elite Package ar mājaslapu — 48 stundu laikā.',
+    'faq.3q':'Vai Aria tiešām runā latviski, lietuviski un igauniski?','faq.3a':'Jā — Aria izmanto ElevenLabs jaunāko balss tehnoloģiju ar apmācītiem modeļiem visām trim Baltijas valodām.',
+    'faq.4q':'Ko nozīmē iestatīšanas maksa?','faq.4a':'Iestatīšanas maksa sedz sākotnējo darbu — Aria konfigurāciju, zvanu scenārija izstrādi, Calendar integrāciju un testēšanu.',
+    'faq.5q':'Vai tas atbilst GDPR prasībām?','faq.5a':'Pilnīgi. Visi dati glabājas ES serverī. Atbilst Latvijas, Lietuvas un Igaunijas datu aizsardzības prasībām.',
+    'faq.6q':'Vai varu atcelt jebkurā laikā?','faq.6a':'Jā. Nav ilgtermiņa saistību. Atceļot, pakalpojums turpinās līdz norēķinu perioda beigām.',
+    'contact.label':'Sazināties','contact.title':'Sāciet <em>šodien</em>','contact.sub':'Aizpildiet veidlapu un mēs sazināsimies 24 stundu laikā.',
+    'form.name':'Vārds, Uzvārds *','form.company':'Uzņēmums *','form.email':'E-pasts *','form.phone':'Tālrunis',
+    'form.country':'Valsts','form.plan':'Plāns','form.existing':'Jūsu esošais tālruņa numurs','form.message':'Papildus informācija',
+    'form.submit':'Nosūtīt pieteikumu →','form.success':'✓ Paldies! Mēs sazināsimies ar jums 24 stundu laikā.','form.note':'Jūsu dati ir drošībā. Mēs nenosūtām surogātpastu.',
+    'form.unsure':'Nav pārliecināts',
+    'cta.title':'Gatavs pārveidot<br>sava uzņēmuma <em>reģistratūru?</em>','cta.sub':'Pievienojieties Baltijas uzņēmumiem, kas jau izmanto AI. Jūsu numurs paliek.',
+    'cta.btn1':'Skatīt cenas →','cta.btn2':'Sazināties',
+    'footer.tagline':'AI balss reģistratūra Baltijas uzņēmumiem. Latvija · Lietuva · Igaunija.',
+    'footer.product':'Produkts','footer.company':'Uzņēmums','footer.legal':'Juridisks','footer.about':'Par mums','footer.blog':'Blogs',
+    'footer.privacy':'Privātuma politika','footer.terms':'Lietošanas noteikumi'
+  },
+  lt: {
+    'nav.how':'Kaip tai veikia','nav.features':'Galimybės','nav.pricing':'Kainos','nav.faq':'DUK','nav.contact':'Kontaktai','nav.cta':'Žiūrėti kainas',
+    'hero.badge':'🇱🇹 Baltijos regionui','hero.h1':'Jūsų įmonė niekada<br>nepraleis<br><em>nė vieno skambučio.</em>',
+    'hero.sub':'AI balso registratūra, atsakanti 24/7, kalbanti jūsų kalba, renkanti potencialius klientus ir rezervuojanti susitikimus — automatiškai. Naudokite savo esamą numerį.',
+    'hero.cta1':'Žiūrėti kainas →','hero.cta2':'Kaip tai veikia',
+    'proof.availability':'Prieinamumas','proof.response':'Atsako laikas','proof.languages':'Kalbos','proof.gdpr':'Atitiktis',
+    'logos.trusted':'Pasitiki:','how.label':'Kaip tai veikia','how.title':'Paprasta nustatyti.<br><em>Veikia iš karto.</em>',
+    'how.sub':'Diegimas užtrunka mažiau nei 24 valandas. Jūsų esamas numeris išlieka nepakitęs.',
+    'how.s1t':'Prijunkite savo esamą numerį','how.s1d':'Nereikia keisti numerio. Paprastas persiuntimas — klientams nieko nesikeičia.',
+    'how.s2t':'Mes sukonfigūruojame Aria jūsų verslui','how.s2d':'Nustatome scenarijų, kalbą, Google Calendar ir skambučių maršrutizavimą.',
+    'how.s3t':'Aria pradeda atsakyti į skambučius','how.s3d':'Kiekvienas skambutis apdorojamas jūsų kalba ir rezervacija patenka į kalendorių.',
+    'how.s4t':'Potencialūs klientai ir analizė realiuoju laiku','how.s4d':'Kiekvienas skambinantis išsaugomas — vardas, numeris, poreikis. Nulis praradimų.',
+    'mockup.incoming':'Įeinantis skambutis','mockup.number':'Jūsų esamas numeris','mockup.status':'Būsena','mockup.active':'Aktyvus','mockup.lang':'Kalba',
+    'feat.label':'Galimybės','feat.title':'Viskas, ko reikia<br><em>profesionaliai registratūrai</em>',
+    'feat.1t':'Natūralus balsas jūsų kalba','feat.1d':'Aria kalba lietuviškai, latviškai ar estiškai su natūralia intonacija. Klientai dažnai nesupranta, kad kalba su AI.',
+    'feat.2t':'Jūsų esamas numeris','feat.2d':'Nereikia keisti telefono numerio. Paprastas persiuntimas — viskas veikia per jūsų dabartinį numerį.',
+    'feat.3t':'Automatinis rezervavimas','feat.3d':'Aria rezervuoja susitikimus tiesiogiai jūsų Google Calendar. Klientai iš karto gauna patvirtinimą.',
+    'feat.4t':'Potencialių klientų surinkimas','feat.4d':'Kiekvienas skambinantis — vardas, telefonas, poreikis — išsaugomas automatiškai.',
+    'feat.5t':'5+ kalbos','feat.5d':'Lietuvių, latvių, estų, anglų ir rusų kalba. Aria automatiškai persijungia pagal kliento kalbą.',
+    'feat.6t':'GDPR atitiktis','feat.6d':'Visi duomenys saugomi ES serveriuose. Pilna atitiktis Lietuvos ir Europos teisės aktams.',
+    'countries.title':'Prieinamas visoje Baltijoje','countries.sub':'Viena paslauga — trys šalys — jūsų klientų kalba',
+    'testi.label':'Atsiliepimai','testi.title':'Ką sako mūsų <em>klientai</em>',
+    'stats.1':'Skambučių atsakymo rodiklis','stats.2':'Atsako laikas','stats.3':'Baltijos šalys','stats.4':'Nepertraukiamas veikimas',
+    'pricing.label':'Kainos','pricing.title':'Pasirinkite tinkamiausią<br><em>savo verslui</em>','pricing.sub':'Be paslėptų mokesčių. Jūsų numeris išlieka. Atšaukite bet kada.',
+    'plan.monthly':'/mėnesį','plan.s.tagline':'"Niekada nepraraskite skambučio"','plan.s.setup':'Diegimas: <strong>€797</strong> (vieną kartą)',
+    'plan.s.desc':'Idealiai tinka mažoms įmonėms — stomatologijos, advokatūroms, automobilių servisams.',
+    'plan.s.f1':'Aria atsako į jūsų esamą numerį 24/7','plan.s.f2':'Lietuvių + anglų + rusų kalba','plan.s.f3':'Automatinis potencialių klientų surinkimas',
+    'plan.s.f4':'Google Calendar integracija','plan.s.f5':'El. pašto pranešimai apie kiekvieną potencialų klientą','plan.s.f6':'500 minučių įtraukta',
+    'plan.s.f7':'Diegimas per 24 valandas','plan.s.f8':'Pritaikytas scenarijus','plan.s.f9':'CRM integracija','plan.s.btn':'Pradėti su Starter →',
+    'plan.g.tagline':'"Jūsų visą darbo dienos AI registratūra"','plan.g.setup':'Diegimas: <strong>€1,500</strong> (vieną kartą)',
+    'plan.g.desc':'Augančioms įmonėms su CRM, analize ir pritaikytu scenarijumi.',
+    'plan.g.f1':'Viskas iš Starter','plan.g.f2':'5+ kalbos (LT, LV, ET, EN, RU, DE)','plan.g.f3':'Pritaikytas skambučių scenarijus',
+    'plan.g.f4':'CRM integracija (HubSpot / Pipedrive)','plan.g.f5':'SMS pranešimai apie kiekvieną potencialų klientą','plan.g.f6':'Realiojo laiko potencialių klientų analizė',
+    'plan.g.f7':'1,500 minučių įtraukta','plan.g.f8':'Skambučių įrašai ir transkripcijos','plan.g.f9':'Prioritetinė pagalba 24/7','plan.g.btn':'Pradėti su Growth →',
+    'plan.e.tagline':'"Visiškas skaitmeninis buvimas"','plan.e.setup':'Diegimas: <strong style="color:var(--gold)">€3,997</strong> (vieną kartą)',
+    'plan.e.period':'/mėnesį po to','plan.e.desc':'Mes sukuriame jūsų įmonės svetainę su Aria — visiškas skaitmeninis sprendimas nuo nulio.',
+    'plan.e.f1':'Viskas iš Growth','plan.e.f2':'Pritaikyta svetainė jūsų verslui','plan.e.f3':'Aria numeris įmontuotas svetainėje',
+    'plan.e.f4':'Klientų portalas su potencialiais klientais ir analize','plan.e.f5':'Domeno vardas + prieglobstis įtrauktas','plan.e.f6':'Neribota minučių',
+    'plan.e.f7':'Paskirtas paskyros vadovas','plan.e.f8':'Svetainė paruošta per 48 valandas','plan.e.f9':'Nemokami pakeitimai pirmą mėnesį',
+    'plan.e.btn':'Registruotis Elite →','plan.e.note':'€3,997 diegimas · tada €797/mėn.',
+    'secure.title':'Saugus mokėjimų apdorojimas su Stripe.','secure.desc':'Starter ir Growth — momentinis aktyvavimas. Elite — susisieksime per 24 val.',
+    'faq.label':'Klausimai','faq.title':'Dažniausiai užduodami <em>klausimai</em>',
+    'faq.1q':'Ar man reikia keisti telefono numerį?','faq.1a':'Ne. Jūsų esamas numeris išlieka nepakitęs. Mes nustatome skambučių persiuntimą į Aria. Klientams nieko nesikeičia.',
+    'faq.2q':'Kiek laiko užtrunka diegimas?','faq.2a':'Starter ir Growth — per 24 valandas. Elite paketas su svetaine — per 48 valandas.',
+    'faq.3q':'Ar Aria tikrai kalba lietuviškai, latviškai ir estiškai?','faq.3a':'Taip — Aria naudoja naujausią ElevenLabs balso technologiją su apmokyti modeliai visoms trims Baltijos kalboms.',
+    'faq.4q':'Ką reiškia diegimo mokestis?','faq.4a':'Diegimo mokestis padengia pradinį darbą — Aria konfigūraciją, skambučių scenarijaus kūrimą ir Calendar integraciją.',
+    'faq.5q':'Ar tai atitinka GDPR reikalavimus?','faq.5a':'Visiškai. Visi duomenys saugomi ES serveriuose. Atitinka Lietuvos ir Europos duomenų apsaugos reikalavimus.',
+    'faq.6q':'Ar galiu atšaukti bet kada?','faq.6a':'Taip. Nėra ilgalaikių įsipareigojimų. Atšaukus, paslauga tęsiasi iki atsiskaitymo laikotarpio pabaigos.',
+    'contact.label':'Susisiekite','contact.title':'Pradėkite <em>šiandien</em>','contact.sub':'Užpildykite formą ir mes susisieksime per 24 valandas.',
+    'form.name':'Vardas, Pavardė *','form.company':'Įmonė *','form.email':'El. paštas *','form.phone':'Telefonas',
+    'form.country':'Šalis','form.plan':'Planas','form.existing':'Jūsų esamas telefono numeris','form.message':'Papildoma informacija',
+    'form.submit':'Siųsti paraišką →','form.success':'✓ Ačiū! Susisieksime su jumis per 24 valandas.','form.note':'Jūsų duomenys yra saugūs. Nesiunčiame šlamšto.',
+    'form.unsure':'Nesate tikri',
+    'cta.title':'Pasiruošę transformuoti<br>savo įmonės <em>registratūrą?</em>','cta.sub':'Prisijunkite prie Baltijos įmonių, jau naudojančių AI. Jūsų numeris išlieka.',
+    'cta.btn1':'Žiūrėti kainas →','cta.btn2':'Susisiekti',
+    'footer.tagline':'AI balso registratūra Baltijos įmonėms. Latvija · Lietuva · Estija.',
+    'footer.product':'Produktas','footer.company':'Įmonė','footer.legal':'Teisinė','footer.about':'Apie mus','footer.blog':'Tinklaraštis',
+    'footer.privacy':'Privatumo politika','footer.terms':'Naudojimo sąlygos'
+  },
+  et: {
+    'nav.how':'Kuidas see töötab','nav.features':'Võimalused','nav.pricing':'Hinnad','nav.faq':'KKK','nav.contact':'Kontakt','nav.cta':'Vaata hindu',
+    'hero.badge':'🇪🇪 Balti piirkonnale','hero.h1':'Teie ettevõte ei jäta<br>kunagi vahele<br><em>ühtegi kõnet.</em>',
+    'hero.sub':'AI häälregistratuur, mis vastab 24/7, räägib teie keeles, kogub müügivihjeid ja broneerib kohtumisi — automaatselt. Kasutage oma olemasolevat numbrit.',
+    'hero.cta1':'Vaata hindu →','hero.cta2':'Kuidas see töötab',
+    'proof.availability':'Kättesaadavus','proof.response':'Vastamisaeg','proof.languages':'Keeled','proof.gdpr':'Vastavus',
+    'logos.trusted':'Usaldavad:','how.label':'Kuidas see töötab','how.title':'Lihtne seadistada.<br><em>Töötab kohe.</em>',
+    'how.sub':'Seadistamine võtab vähem kui 24 tundi. Teie olemasolev number jääb muutumatuks.',
+    'how.s1t':'Ühendage oma olemasolev number','how.s1d':'Numbrit ei pea vahetama. Lihtne suunamine — klientide jaoks ei muutu midagi.',
+    'how.s2t':'Me konfigureerime Aria teie äri jaoks','how.s2d':'Seadistame stsenaariumi, keele, Google Calendari ja kõnede suunamise.',
+    'how.s3t':'Aria hakkab kõnedele vastama','how.s3d':'Iga kõne töödeldakse teie keeles ja broneering jõuab kalendrisse automaatselt.',
+    'how.s4t':'Müügivihjed ja analüütika reaalajas','how.s4d':'Iga helistaja salvestatakse — nimi, number, vajadus. Null kaotusi.',
+    'mockup.incoming':'Sissetulev kõne','mockup.number':'Teie olemasolev number','mockup.status':'Olek','mockup.active':'Aktiivne','mockup.lang':'Keel',
+    'feat.label':'Võimalused','feat.title':'Kõik, mida vajate<br><em>professionaalseks registratuuriks</em>',
+    'feat.1t':'Loomulik hääl teie keeles','feat.1d':'Aria räägib eesti, läti või leedu keeles loomuliku intonatsiooniga. Kliendid ei mõista tihti, et räägivad AI-ga.',
+    'feat.2t':'Teie olemasolev number','feat.2d':'Telefoni numbrit ei pea vahetama. Lihtne suunamine — kõik toimib läbi teie praeguse numbri.',
+    'feat.3t':'Automaatne broneerimine','feat.3d':'Aria broneerib kohtumised otse teie Google Calendaris. Kliendid saavad kinnituse kohe.',
+    'feat.4t':'Müügivihjete kogumine','feat.4d':'Iga helistaja — nimi, telefon, vajadus — salvestatakse automaatselt. Null kaotusi.',
+    'feat.5t':'5+ keelt','feat.5d':'Eesti, läti, leedu, inglise ja vene keeles. Aria vahetab automaatselt kliendi keele järgi.',
+    'feat.6t':'GDPR vastavus','feat.6d':'Kõik andmed salvestatakse EL serverites. Täielik vastavus Eesti ja Euroopa andmekaitseseadustele.',
+    'countries.title':'Saadaval kogu Baltikumis','countries.sub':'Üks teenus — kolm riiki — teie klientide keeles',
+    'testi.label':'Tagasiside','testi.title':'Mida ütlevad meie <em>kliendid</em>',
+    'stats.1':'Kõnede vastamise määr','stats.2':'Vastamisaeg','stats.3':'Balti riiki','stats.4':'Katkematu töö',
+    'pricing.label':'Hinnad','pricing.title':'Valige oma<br><em>ettevõttele sobiv</em>','pricing.sub':'Peidetud tasudeta. Teie number jääb. Tühistage igal ajal.',
+    'plan.monthly':'/kuus','plan.s.tagline':'"Ärge jätke kunagi kõnet vastamata"','plan.s.setup':'Seadistamine: <strong>€797</strong> (ühekordne)',
+    'plan.s.desc':'Ideaalne väikestele ettevõtetele — hambaravile, advokaatidele, autoservisele.',
+    'plan.s.f1':'Aria vastab teie olemasolevale numbrile 24/7','plan.s.f2':'Eesti + inglise + vene keel','plan.s.f3':'Automaatne müügivihjete kogumine',
+    'plan.s.f4':'Google Calendari integratsioon','plan.s.f5':'E-posti teavitused iga müügivihje kohta','plan.s.f6':'500 minutit kaasas',
+    'plan.s.f7':'Seadistamine 24 tunni jooksul','plan.s.f8':'Kohandatud stsenaarium','plan.s.f9':'CRM integratsioon','plan.s.btn':'Alusta Starteriga →',
+    'plan.g.tagline':'"Teie täisajaga AI registratuur"','plan.g.setup':'Seadistamine: <strong>€1,500</strong> (ühekordne)',
+    'plan.g.desc':'Kasvavatele ettevõtetele CRM-i, analüütika ja kohandatud stsenaariumiga.',
+    'plan.g.f1':'Kõik Starterist','plan.g.f2':'5+ keelt (ET, LV, LT, EN, RU, DE)','plan.g.f3':'Kohandatud kõnede stsenaarium',
+    'plan.g.f4':'CRM integratsioon (HubSpot / Pipedrive)','plan.g.f5':'SMS teavitused iga müügivihje kohta','plan.g.f6':'Reaalajas müügivihjete analüütika',
+    'plan.g.f7':'1,500 minutit kaasas','plan.g.f8':'Kõnede salvestused ja transkriptsioonid','plan.g.f9':'Prioriteetne tugi 24/7','plan.g.btn':'Alusta Growthiga →',
+    'plan.e.tagline':'"Täielik digitaalne kohalolek"','plan.e.setup':'Seadistamine: <strong style="color:var(--gold)">€3,997</strong> (ühekordne)',
+    'plan.e.period':'/kuus pärast seda','plan.e.desc':'Me loome teie ettevõtte veebilehe koos Ariaga — täielik digitaalne lahendus nullist.',
+    'plan.e.f1':'Kõik Growthist','plan.e.f2':'Kohandatud veebileht teie äri jaoks','plan.e.f3':'Aria number veebilehele sisse ehitatud',
+    'plan.e.f4':'Kliendiportaal müügivihjete ja analüütikaga','plan.e.f5':'Domeeninimi + hostimine kaasas','plan.e.f6':'Piiramatu minuteid',
+    'plan.e.f7':'Pühendatud kontohaldur','plan.e.f8':'Veebileht valmis 48 tunni jooksul','plan.e.f9':'Tasuta muudatused esimesel kuul',
+    'plan.e.btn':'Registreeru Elite →','plan.e.note':'€3,997 seadistamine · siis €797/kuus',
+    'secure.title':'Turvaline maksete töötlemine Stripe\'iga.','secure.desc':'Starter ja Growth — kohene aktiveerimine. Elite — võtame ühendust 24 tunni jooksul.',
+    'faq.label':'Küsimused','faq.title':'Korduma kippuvad <em>küsimused</em>',
+    'faq.1q':'Kas pean oma telefoninumbrit vahetama?','faq.1a':'Ei. Teie olemasolev number jääb muutumatuks. Me seadistame kõnede suunamise Ariale. Klientide jaoks ei muutu midagi.',
+    'faq.2q':'Kui kaua seadistamine aega võtab?','faq.2a':'Starter ja Growth — 24 tunni jooksul. Elite pakett veebilehega — 48 tunni jooksul.',
+    'faq.3q':'Kas Aria tõesti räägib eesti, läti ja leedu keeles?','faq.3a':'Jah — Aria kasutab ElevenLabsi uusimat hääli tehnoloogiat kõigi kolme Balti keele jaoks.',
+    'faq.4q':'Mida tähendab seadistamistasu?','faq.4a':'Seadistamistasu katab esialgse töö — Aria konfiguratsiooni, kõnede stsenaariumi loomise ja Calendari integratsiooni.',
+    'faq.5q':'Kas see vastab GDPR nõuetele?','faq.5a':'Täielikult. Kõik andmed salvestatakse EL serverites. Vastab Eesti ja Euroopa andmekaitsenõuetele.',
+    'faq.6q':'Kas saan igal ajal tühistada?','faq.6a':'Jah. Pikaajalisi kohustusi ei ole. Tühistamisel jätkub teenus kuni arveldusperioodi lõpuni.',
+    'contact.label':'Võtke ühendust','contact.title':'Alustage <em>täna</em>','contact.sub':'Täitke vorm ja me võtame teiega ühendust 24 tunni jooksul.',
+    'form.name':'Nimi, Perekonnanimi *','form.company':'Ettevõte *','form.email':'E-post *','form.phone':'Telefon',
+    'form.country':'Riik','form.plan':'Plaan','form.existing':'Teie olemasolev telefoninumber','form.message':'Lisateave',
+    'form.submit':'Saada taotlus →','form.success':'✓ Tänan! Võtame teiega ühendust 24 tunni jooksul.','form.note':'Teie andmed on kaitstud. Me ei saada rämpsposti.',
+    'form.unsure':'Pole kindel',
+    'cta.title':'Valmis muutma oma<br>ettevõtte <em>registratuuri?</em>','cta.sub':'Liituge Balti ettevõtetega, kes juba kasutavad AI-d. Teie number jääb.',
+    'cta.btn1':'Vaata hindu →','cta.btn2':'Võtke ühendust',
+    'footer.tagline':'AI häälregistratuur Balti ettevõtetele. Läti · Leedu · Eesti.',
+    'footer.product':'Toode','footer.company':'Ettevõte','footer.legal':'Juriidiline','footer.about':'Meist','footer.blog':'Blogi',
+    'footer.privacy':'Privaatsuspoliitika','footer.terms':'Kasutustingimused'
+  },
+  en: {
+    'nav.how':'How it works','nav.features':'Features','nav.pricing':'Pricing','nav.faq':'FAQ','nav.contact':'Contact','nav.cta':'View pricing',
+    'hero.badge':'🌍 For the Baltic region','hero.h1':'Your business will never<br>miss another<br><em>phone call.</em>',
+    'hero.sub':'AI voice receptionist answering 24/7, speaking your language, collecting leads and booking appointments — automatically. Use your existing number.',
+    'hero.cta1':'View pricing →','hero.cta2':'How it works',
+    'proof.availability':'Availability','proof.response':'Response time','proof.languages':'Languages','proof.gdpr':'Compliance',
+    'logos.trusted':'Trusted by:','how.label':'How it works','how.title':'Simple to set up.<br><em>Works immediately.</em>',
+    'how.sub':'Setup takes less than 24 hours. Your existing number stays unchanged.',
+    'how.s1t':'Connect your existing number','how.s1d':'No need to change your number. Simple forwarding — nothing changes for your clients.',
+    'how.s2t':'We configure Aria for your business','how.s2d':'We set up the script, language, Google Calendar and call routing.',
+    'how.s3t':'Aria starts answering calls','how.s3d':'Every call handled in your language and booking appears in your calendar automatically.',
+    'how.s4t':'Leads and analytics in real time','how.s4d':'Every caller saved — name, number, need. Zero loss.',
+    'mockup.incoming':'Incoming call','mockup.number':'Your existing number','mockup.status':'Status','mockup.active':'Active','mockup.lang':'Language',
+    'feat.label':'Features','feat.title':'Everything you need<br><em>for a professional reception</em>',
+    'feat.1t':'Natural voice in your language','feat.1d':'Aria speaks Latvian, Lithuanian or Estonian with natural intonation. Clients often don\'t realize they\'re speaking with AI.',
+    'feat.2t':'Your existing number','feat.2d':'No need to change your phone number. Simple forwarding — everything works through your current number.',
+    'feat.3t':'Automatic booking','feat.3d':'Aria books appointments directly in your Google Calendar. Clients receive confirmation instantly.',
+    'feat.4t':'Lead capture','feat.4d':'Every caller — name, phone, need — saved automatically. Zero loss.',
+    'feat.5t':'5+ languages','feat.5d':'Latvian, Lithuanian, Estonian, English and Russian. Aria automatically switches based on the caller\'s language.',
+    'feat.6t':'GDPR compliance','feat.6d':'All data stored on EU servers. Full compliance with Baltic and European data protection laws.',
+    'countries.title':'Available across the Baltics','countries.sub':'One service — three countries — in your clients\' language',
+    'testi.label':'Testimonials','testi.title':'What our <em>clients say</em>',
+    'stats.1':'Call answer rate','stats.2':'Response time','stats.3':'Baltic countries','stats.4':'Continuous operation',
+    'pricing.label':'Pricing','pricing.title':'Choose the right plan<br><em>for your business</em>','pricing.sub':'No hidden fees. Your number stays. Cancel anytime.',
+    'plan.monthly':'/month','plan.s.tagline':'"Never miss another call"','plan.s.setup':'Setup: <strong>€797</strong> (one-time)',
+    'plan.s.desc':'Perfect for small businesses — dental clinics, law firms, auto services — wanting to answer every call automatically.',
+    'plan.s.f1':'Aria answers your existing number 24/7','plan.s.f2':'Latvian + English + Russian','plan.s.f3':'Automatic lead capture',
+    'plan.s.f4':'Google Calendar integration','plan.s.f5':'Email notifications for every lead','plan.s.f6':'500 minutes included',
+    'plan.s.f7':'Setup within 24 hours','plan.s.f8':'Custom script','plan.s.f9':'CRM integration','plan.s.btn':'Start with Starter →',
+    'plan.g.tagline':'"Your full-time AI receptionist"','plan.g.setup':'Setup: <strong>€1,500</strong> (one-time)',
+    'plan.g.desc':'For growing businesses wanting full AI reception with CRM, analytics and custom script.',
+    'plan.g.f1':'Everything in Starter','plan.g.f2':'5+ languages (LV, LT, ET, EN, RU, DE)','plan.g.f3':'Custom call script',
+    'plan.g.f4':'CRM integration (HubSpot / Pipedrive)','plan.g.f5':'SMS notifications for every lead','plan.g.f6':'Real-time leads analytics',
+    'plan.g.f7':'1,500 minutes included','plan.g.f8':'Call recordings and transcriptions','plan.g.f9':'Priority support 24/7','plan.g.btn':'Start with Growth →',
+    'plan.e.tagline':'"Complete digital presence"','plan.e.setup':'Setup: <strong style="color:var(--gold)">€3,997</strong> (one-time)',
+    'plan.e.period':'/month after that','plan.e.desc':'We build your business website with Aria already included — complete digital solution from scratch.',
+    'plan.e.f1':'Everything in Growth','plan.e.f2':'Custom website for your business','plan.e.f3':'Aria number built into the website',
+    'plan.e.f4':'Client portal with leads and analytics','plan.e.f5':'Domain name + hosting included','plan.e.f6':'Unlimited minutes',
+    'plan.e.f7':'Dedicated account manager','plan.e.f8':'Website ready in 48 hours','plan.e.f9':'Free changes in first month',
+    'plan.e.btn':'Apply for Elite →','plan.e.note':'€3,997 setup · then €797/month',
+    'secure.title':'Secure payment processing with Stripe.','secure.desc':'Starter and Growth — instant activation. Elite — we\'ll contact you within 24 hours.',
+    'faq.label':'Questions','faq.title':'Frequently asked <em>questions</em>',
+    'faq.1q':'Do I need to change my phone number?','faq.1a':'No. Your existing number stays unchanged. We set up call forwarding to Aria. Nothing changes for your clients.',
+    'faq.2q':'How long does setup take?','faq.2a':'Starter and Growth — within 24 hours. Elite Package with website — within 48 hours.',
+    'faq.3q':'Does Aria really speak Latvian, Lithuanian and Estonian?','faq.3a':'Yes — Aria uses ElevenLabs\' latest voice technology with trained models for all three Baltic languages.',
+    'faq.4q':'What does the setup fee mean?','faq.4a':'The setup fee covers the initial work — Aria configuration, call script development, Calendar integration and testing.',
+    'faq.5q':'Is it GDPR compliant?','faq.5a':'Fully. All data stored on EU servers. Compliant with Baltic and European data protection requirements.',
+    'faq.6q':'Can I cancel anytime?','faq.6a':'Yes. No long-term commitments. Upon cancellation, service continues until the end of the billing period.',
+    'contact.label':'Contact','contact.title':'Start <em>today</em>','contact.sub':'Fill in the form and we\'ll get back to you within 24 hours.',
+    'form.name':'Full Name *','form.company':'Company *','form.email':'Email *','form.phone':'Phone',
+    'form.country':'Country','form.plan':'Plan','form.existing':'Your existing phone number','form.message':'Additional information',
+    'form.submit':'Send application →','form.success':'✓ Thank you! We\'ll contact you within 24 hours.','form.note':'Your data is safe. We don\'t send spam.',
+    'form.unsure':'Not sure',
+    'cta.title':'Ready to transform your<br>business <em>reception?</em>','cta.sub':'Join Baltic businesses already using AI. Your number stays — we just add intelligence.',
+    'cta.btn1':'View pricing →','cta.btn2':'Contact us',
+    'footer.tagline':'AI voice reception for Baltic businesses. Latvia · Lithuania · Estonia.',
+    'footer.product':'Product','footer.company':'Company','footer.legal':'Legal','footer.about':'About us','footer.blog':'Blog',
+    'footer.privacy':'Privacy policy','footer.terms':'Terms of service'
+  }
+};
 
-// How steps
-function setStep(i){document.querySelectorAll('.how-step').forEach((s,j)=>s.classList.toggle('active',i===j));}
+// ═══════════════════════════════════════
+// LANGUAGE SYSTEM
+// ═══════════════════════════════════════
+let currentLang = 'lv';
+
+function detectLanguage() {
+  const browserLang = navigator.language || navigator.userLanguage || 'lv';
+  const lang = browserLang.toLowerCase().substring(0,2);
+  if (lang === 'lt') return 'lt';
+  if (lang === 'et') return 'et';
+  if (lang === 'en') return 'en';
+  return 'lv';
+}
+
+function setLang(lang) {
+  currentLang = lang;
+  const t = TRANSLATIONS[lang];
+  if (!t) return;
+
+  // Update all elements with data-i18n
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined) {
+      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+        el.placeholder = t[key];
+      } else {
+        el.innerHTML = t[key];
+      }
+    }
+  });
+
+  // Update lang buttons
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.remove('active');
+    if (btn.textContent.toLowerCase().includes(lang) || btn.onclick?.toString().includes(`'${lang}'`)) {
+      btn.classList.add('active');
+    }
+  });
+
+  // Fix lang buttons properly
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    const btnLang = btn.getAttribute('onclick')?.match(/'(\w+)'/)?.[1];
+    btn.classList.toggle('active', btnLang === lang);
+  });
+
+  // Update mockup language display
+  const displays = { lv: 'LV', lt: 'LT', et: 'ET', en: 'EN' };
+  const mockupLang = document.getElementById('mockup-lang-display');
+  if (mockupLang) mockupLang.textContent = displays[lang] || 'LV';
+
+  // Update html lang attribute
+  document.getElementById('html-root').setAttribute('lang', lang);
+
+  // Update success message
+  const successMsg = document.getElementById('success-msg');
+  if (successMsg && t['form.success']) successMsg.textContent = t['form.success'];
+}
+
+// ═══════════════════════════════════════
+// STRIPE PAYMENT — DIRECT PAYMENT LINKS
+// ═══════════════════════════════════════
+// These are Stripe Payment Links — no backend needed, go directly to Stripe hosted checkout
+const PAYMENT_LINKS = {
+  starter: 'https://buy.stripe.com/test_28o8wT7tM1ld5w4144', // Replace with real Stripe Payment Link
+  growth: 'https://buy.stripe.com/test_28o8wT7tM1ld5w4144'   // Replace with real Stripe Payment Link
+};
+
+const BACKEND_URL = 'https://aria-server-production.up.railway.app';
+const STRIPE_PUBLISHABLE_KEY = 'pk_test_51TBKrYJ5wzS9f2oVOETeL5Uw7onV706TFzV8Tyg5wx4ta73ZBi8M19sKGYEmILlXXdJenu3XvRU41uTgkK25lWMi00RVI760Eb';
+
+async function handleCheckout(event, plan) {
+  event.preventDefault();
+  const btn = event.currentTarget;
+  const orig = btn.textContent;
+  btn.textContent = currentLang === 'lv' ? 'Apstrādā...' : currentLang === 'lt' ? 'Apdorojama...' : currentLang === 'et' ? 'Töötleb...' : 'Processing...';
+  btn.style.opacity = '0.7';
+  btn.style.pointerEvents = 'none';
+
+  try {
+    const stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
+    const res = await fetch(BACKEND_URL + '/create-checkout-session', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ plan })
+    });
+    if (!res.ok) throw new Error('Server error ' + res.status);
+    const data = await res.json();
+    if (data.error) throw new Error(data.error);
+    const result = await stripe.redirectToCheckout({ sessionId: data.sessionId });
+    if (result.error) throw new Error(result.error.message);
+  } catch(e) {
+    console.error('Checkout error:', e);
+    btn.textContent = orig;
+    btn.style.opacity = '1';
+    btn.style.pointerEvents = 'auto';
+    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+  }
+}
+
+// ═══════════════════════════════════════
+// NAV
+// ═══════════════════════════════════════
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+});
+function toggleMenu() { document.getElementById('mobile-menu').classList.toggle('open'); }
+function closeMenu() { document.getElementById('mobile-menu').classList.remove('open'); }
+document.addEventListener('click', e => {
+  const menu = document.getElementById('mobile-menu');
+  const btn = document.querySelector('.nav-mobile-btn');
+  if (menu && btn && !menu.contains(e.target) && !btn.contains(e.target)) menu.classList.remove('open');
+});
+
+// HOW STEPS
+function setStep(i) {
+  document.querySelectorAll('.how-step').forEach((s, j) => s.classList.toggle('active', i === j));
+}
 
 // FAQ
-function tfaq(i){const item=document.querySelectorAll('.faq-item')[i];const open=item.classList.contains('open');document.querySelectorAll('.faq-item').forEach(el=>el.classList.remove('open'));document.querySelectorAll('.faq-icon').forEach(el=>el.textContent='+');if(!open){item.classList.add('open');document.getElementById('fi'+i).textContent='+';}}
+function tfaq(i) {
+  const item = document.querySelectorAll('.faq-item')[i];
+  const open = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('open'));
+  document.querySelectorAll('.faq-icon').forEach(el => el.textContent = '+');
+  if (!open) { item.classList.add('open'); document.getElementById('fi' + i).textContent = '+'; }
+}
 
-// Form
-function submitForm(e){
+// FORM
+function submitForm(e) {
   e.preventDefault();
-  const form=document.getElementById('contact-form');
-  const data=new FormData(form);
-  fetch(form.action,{method:'POST',body:data,headers:{'Accept':'application/json'}})
-  .then(res=>{if(res.ok){form.style.display='none';document.getElementById('success-msg').style.display='block';}else{alert('Kļūda. Lūdzu mēģiniet vēlreiz.');}})
-  .catch(()=>alert('Kļūda. Lūdzu mēģiniet vēlreiz.'));
+  const form = document.getElementById('contact-form');
+  const data = new FormData(form);
+  fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
+    .then(res => {
+      if (res.ok) {
+        form.style.display = 'none';
+        const msg = document.getElementById('success-msg');
+        msg.style.display = 'block';
+        msg.textContent = TRANSLATIONS[currentLang]['form.success'] || '✓ Paldies!';
+      } else { alert('Error. Please try again.'); }
+    }).catch(() => alert('Error. Please try again.'));
 }
 
-// Reveal
-const observer=new IntersectionObserver(entries=>{entries.forEach(el=>{if(el.isIntersecting)el.target.classList.add('visible');});},{threshold:0.1});
-document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+// REVEAL
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(el => { if (el.isIntersecting) el.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// Success banner
-window.addEventListener('load',()=>{
-  if(window.location.search.includes('payment=success')){
-    document.body.insertAdjacentHTML('afterbegin',`<div style="position:fixed;top:0;left:0;right:0;z-index:9999;background:#0F6E56;color:white;text-align:center;padding:14px 16px;font-size:14px;font-weight:500;"> ✅ Maksājums veiksmīgs! Mēs sazināsimies 24 stundu laikā. <button onclick="this.parentElement.remove()" style="background:none;border:none;color:white;cursor:pointer;margin-left:12px;font-size:16px;">✕</button></div>`);
-    window.history.replaceState({},'',window.location.pathname);
-  }
-});
-</script>
+// SUCCESS BANNER
+window.addEventListener('load', () => {
+  // Auto-detect language
+  const detected = detectLanguage();
+  setLang(detected);
 
-<script src="https://js.stripe.com/v3/"></script>
-<script>
-const STRIPE_PUBLISHABLE_KEY='pk_test_51TBKrYJ5wzS9f2oVOETeL5Uw7onV706TFzV8Tyg5wx4ta73ZBi8M19sKGYEmILlXXdJenu3XvRU41uTgkK25lWMi00RVI760Eb';
-const BACKEND_URL='https://aria-server-production.up.railway.app';
-
-async function startCheckout(plan){
-  const btn=event.target;
-  const orig=btn.textContent;
-  btn.textContent='Apstrādā...';
-  btn.style.opacity='0.7';
-  btn.disabled=true;
-  try{
-    const stripe=Stripe(STRIPE_PUBLISHABLE_KEY);
-    const res=await fetch(BACKEND_URL+'/create-checkout-session',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({plan})
-    });
-    if(!res.ok)throw new Error('Server error '+res.status);
-    const data=await res.json();
-    if(data.error)throw new Error(data.error);
-    await stripe.redirectToCheckout({sessionId:data.sessionId});
-  }catch(e){
-    console.error(e);
-    btn.textContent=orig;
-    btn.style.opacity='1';
-    btn.disabled=false;
-    document.getElementById('contact').scrollIntoView({behavior:'smooth'});
-  }
-}
-
-async function startCheckout(plan){
-  const btn=event.target;
-  const orig=btn.textContent;
-  btn.textContent='Apstrādā...';
-  btn.style.opacity='0.7';
-  btn.disabled=true;
-  try{
-    const stripe=Stripe(STRIPE_PUBLISHABLE_KEY);
-    const priceId=plan==='starter'?STARTER_PRICE_ID:PREMIUM_PRICE_ID;
-    const res=await fetch(BACKEND_URL+'/create-checkout-session',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({priceId})});
-    if(!res.ok)throw new Error('Server error');
-    const data=await res.json();
-    if(data.error)throw new Error(data.error);
-    await stripe.redirectToCheckout({sessionId:
+  if (window.location.search.includes('payment=success')) {
+    document.body.insertAdjacentHTML('afterbegin', `
+      <div style="position:fixed;top:0;left:0;right:0;z-index:9999;background:#0F6E56;color:white;text-align:center;padding:14px 16px;font-size:14px;font-weight:500;">
+        ✅ ${TRANSLATIONS[currentLang]['form.success'] || 'Maksājums veiksmīgs! Mēs sazināsimies 24 stundu laikā.'}
+        <button onclick="this.parentElemen
